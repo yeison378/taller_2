@@ -73,5 +73,10 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
+      <ImageView fitHeight="109.0" fitWidth="121.0" layoutX="229.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@dados.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
