@@ -2,6 +2,9 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -56,5 +59,19 @@
             <Image url="@uña4.png" />
          </image>
       </ImageView>
+      <TableView fx:id="clasificacion" layoutX="740.0" layoutY="267.0" prefHeight="200.0" prefWidth="612.0" stylesheets="@tabla.css">
+        <columns>
+          <TableColumn fx:id="numero" editable="false" prefWidth="66.39996337890625" text="#" />
+          <TableColumn fx:id="nombre" editable="false" prefWidth="227.199951171875" text="NOMBRE" />
+            <TableColumn fx:id="ubicacion" editable="false" prefWidth="119.20001220703125" text="UBICACIÓN" />
+            <TableColumn fx:id="puntos" editable="false" prefWidth="100.0" text="PUNTOS" />
+            <TableColumn fx:id="partida" editable="false" prefWidth="96.7999267578125" text="PARTIDAS" />
+        </columns>
+      </TableView>
+      <Label layoutX="901.0" layoutY="217.0" text="CLASIFICACION GENERAL" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

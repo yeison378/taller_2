@@ -1,12 +1,13 @@
 package com.example.taller_2;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -19,7 +20,12 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    jug = FXCollections.observableArrayList();
+    numero.setCellValueFactory(new PropertyValueFactory("numero"));
+    nombre.setCellValueFactory(new PropertyValueFactory("nombre"));
+    ubicacion.setCellValueFactory(new PropertyValueFactory("ubicacion"));
+    puntos.setCellValueFactory(new PropertyValueFactory("puntos"));
+    partida.setCellValueFactory(new PropertyValueFactory("partidas"));
     }
 
     @FXML
@@ -51,12 +57,9 @@ public class Controller implements Initializable {
 
     @FXML
     void moverEnX(ActionEvent event) {
-        jugador.setX(Double.parseDouble(texto.getText()));
-
-
-        jugador1.setX((int)(Math.random()*100+1)+(jugador1.getX()));
-
-        System.out.println(jugador.getX());
+       Jugador a = new Jugador(1,"nombre","ubicacion",1,1);
+       jug.add(a);
+       clasificacion.setItems(jug);
     }
 
     @FXML
@@ -69,11 +72,24 @@ public class Controller implements Initializable {
         if(jugador3.getX()<(Double)960.0)jugador3.setX((int)(Math.random()*40+1)+(jugador3.getX()));
         if(jugador4.getX()<(Double)960.0)jugador4.setX((int)(Math.random()*40+1)+(jugador4.getX()));
 
-//        jugador.setX(960);
-//        jugador1.setX(960);
-
-
-//        System.out.println(jugador.getX());
-//        System.out.println(jugador1.getX());
     }
+private ObservableList<Jugador>jug;
+
+    @FXML
+    private TableView<Jugador> clasificacion;
+
+    @FXML
+    private TableColumn<?, ?> numero;
+
+    @FXML
+    private TableColumn<?, ?> nombre;
+
+    @FXML
+    private TableColumn<?, ?> ubicacion;
+
+    @FXML
+    private TableColumn<?, ?> puntos;
+
+    @FXML
+    private TableColumn<?, ?> partida;
 }
