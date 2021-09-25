@@ -1,5 +1,6 @@
 package com.example.taller_2;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -105,11 +106,45 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void mov(ActionEvent event) {
-        if(jugador.getX()<(Double)960.0)jugador.setX((int)(Math.random()*40+1)+(jugador.getX()));
-        if(jugador1.getX()<(Double)960.0)jugador1.setX((int)(Math.random()*40+1)+(jugador1.getX()));
-        if(jugador2.getX()<(Double)960.0)jugador2.setX((int)(Math.random()*40+1)+(jugador2.getX()));
-        if(jugador3.getX()<(Double)960.0)jugador3.setX((int)(Math.random()*40+1)+(jugador3.getX()));
-        if(jugador4.getX()<(Double)960.0)jugador4.setX((int)(Math.random()*40+1)+(jugador4.getX()));
+    void mov(ActionEvent event) throws InterruptedException {
+
+        Platform.runLater(a());
+
+    }
+
+    private Runnable a(){
+        return ()->{
+            for(int i = 0; i<192;i++){
+
+
+                if(jugador.getX()<(Double)960.0){
+                    Platform.runLater(()->jugador.setX((int)(Math.random()*40+1)+(jugador.getX())));
+
+                }
+                if(jugador1.getX()<(Double)960.0){
+                    Platform.runLater(()->jugador1.setX((int)(Math.random()*40+1)+(jugador1.getX())));
+
+                }
+                if(jugador2.getX()<(Double)960.0){
+                    Platform.runLater(()->jugador2.setX((int)(Math.random()*40+1)+(jugador2.getX())));
+
+                }
+                if(jugador3.getX()<(Double)960.0){
+                    Platform.runLater(()->jugador3.setX((int)(Math.random()*40+1)+(jugador3.getX())));
+
+                }
+                if(jugador4.getX()<(Double)960.0){
+                    Platform.runLater(()->jugador4.setX((int)(Math.random()*40+1)+(jugador4.getX())));
+
+                }
+                System.out.println("-> "+i);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        };
     }
 }

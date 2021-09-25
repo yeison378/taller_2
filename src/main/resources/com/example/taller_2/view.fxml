@@ -36,14 +36,12 @@
             <Image url="@uña.png" />
          </image>
       </ImageView>
-      <Button fx:id="mover" layoutX="72.0" layoutY="482.0" mnemonicParsing="false" onAction="#moverEnX" prefHeight="26.0" prefWidth="98.0" styleClass="highlight" stylesheets="@estilos.css" text="mover" />
-      <TextField fx:id="texto" alignment="CENTER" layoutX="47.0" layoutY="441.0" styleClass="highlight" stylesheets="@estilos.css" />
       <ImageView fx:id="jugador1" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@uña3.png" />
          </image>
       </ImageView>
-      <Button fx:id="aleatorio" layoutX="240.0" layoutY="482.0" mnemonicParsing="false" onAction="#mov" prefHeight="26.0" prefWidth="98.0" styleClass="highlight" stylesheets="@estilos.css" text="aleatorio" />
+      <Button fx:id="aleatorio" layoutX="84.0" layoutY="630.0" mnemonicParsing="false" onAction="#mov" prefHeight="26.0" prefWidth="98.0" styleClass="highlight" stylesheets="@estilos.css" text="aleatorio" />
       <ImageView fx:id="jugador2" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@uña1.png" />
@@ -59,7 +57,7 @@
             <Image url="@uña4.png" />
          </image>
       </ImageView>
-      <TableView fx:id="clasificacion" layoutX="740.0" layoutY="267.0" prefHeight="200.0" prefWidth="612.0" stylesheets="@tabla.css">
+      <TableView fx:id="clasificacion" layoutX="733.0" layoutY="184.0" prefHeight="200.0" prefWidth="612.0" stylesheets="@tabla.css">
         <columns>
           <TableColumn fx:id="startingNumber" editable="false" prefWidth="66.39996337890625" text="#" />
           <TableColumn fx:id="name" editable="false" prefWidth="227.199951171875" text="NOMBRE" />
@@ -68,15 +66,49 @@
             <TableColumn fx:id="numberMatches" editable="false" prefWidth="96.7999267578125" text="PARTIDAS" />
         </columns>
       </TableView>
-      <Label layoutX="901.0" layoutY="217.0" text="CLASIFICACION GENERAL" textFill="WHITE">
+      <Label layoutX="900.0" layoutY="134.0" text="CLASIFICACION GENERAL" textFill="WHITE">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <ImageView fitHeight="109.0" fitWidth="121.0" layoutX="229.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="109.0" fitWidth="121.0" layoutX="73.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@dados.gif" />
          </image>
       </ImageView>
+      <AnchorPane layoutX="47.0" layoutY="134.0" prefHeight="300.0" prefWidth="500.0" styleClass="highlight" stylesheets="@estilos.css">
+         <children>
+            <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="188.0" layoutY="243.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" styleClass="jugar" stylesheets="@bootones.css" text="JUGAR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@play.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <TextField alignment="CENTER" editable="false" layoutX="132.0" layoutY="68.0" prefHeight="26.0" prefWidth="235.0" styleClass="highlight" stylesheets="@estilos.css" />
+            <Button layoutX="374.0" layoutY="69.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="16.0" styleClass="flecha" stylesheets="@bootones.css">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@play.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="100.0" layoutY="69.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="16.0" styleClass="flecha" stylesheets="@bootones.css">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@flecha.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

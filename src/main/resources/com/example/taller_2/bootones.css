@@ -1,0 +1,25 @@
+.jugar {
+    -fx-background-color: #52772a;
+    -fx-background-radius: 25;
+}
+
+.jugar:hover {
+    -fx-background-color: #84D248;
+    -fx-scale-y: 1.1;
+    -fx-scale-x: 1.1;
+}
+
+.jugar:pressed {
+    -fx-background-color: #465938;
+    -fx-scale-y: 1.1;
+    -fx-scale-x: 1.1;
+}
+
+.flecha {
+   -fx-background-color:  transparent;
+}
+
+.flecha:hover {
+    -fx-scale-y: 2.2;
+    -fx-scale-x: 2.2;
+}
