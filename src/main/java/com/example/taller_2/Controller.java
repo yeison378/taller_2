@@ -39,7 +39,7 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<?,?> numberMatches;
 
-    //Se le colocan los datos a la tabla
+    //Se le colocan los datos a la tablas
     public void tablaJugadores(){
         for (Jugador j: player){
             Jugador p = j;
