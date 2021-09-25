@@ -61,11 +61,11 @@
       </ImageView>
       <TableView fx:id="clasificacion" layoutX="740.0" layoutY="267.0" prefHeight="200.0" prefWidth="612.0" stylesheets="@tabla.css">
         <columns>
-          <TableColumn fx:id="numero" editable="false" prefWidth="66.39996337890625" text="#" />
-          <TableColumn fx:id="nombre" editable="false" prefWidth="227.199951171875" text="NOMBRE" />
-            <TableColumn fx:id="ubicacion" editable="false" prefWidth="119.20001220703125" text="UBICACIÓN" />
-            <TableColumn fx:id="puntos" editable="false" prefWidth="100.0" text="PUNTOS" />
-            <TableColumn fx:id="partida" editable="false" prefWidth="96.7999267578125" text="PARTIDAS" />
+          <TableColumn fx:id="startingNumber" editable="false" prefWidth="66.39996337890625" text="#" />
+          <TableColumn fx:id="name" editable="false" prefWidth="227.199951171875" text="NOMBRE" />
+            <TableColumn fx:id="location" editable="false" prefWidth="119.20001220703125" text="UBICACIÓN" />
+            <TableColumn fx:id="pointsObtained" editable="false" prefWidth="100.0" text="PUNTOS" />
+            <TableColumn fx:id="numberMatches" editable="false" prefWidth="96.7999267578125" text="PARTIDAS" />
         </columns>
       </TableView>
       <Label layoutX="901.0" layoutY="217.0" text="CLASIFICACION GENERAL" textFill="WHITE">

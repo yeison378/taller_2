@@ -1,57 +1,72 @@
 package com.example.taller_2;
 
 public class Jugador {
-    private int numero;
-    private String nombre;
-    private String ubicacion;
-    private int puntos;
-    private int partidas;
+    //startingNumber: es el puesto en todo el juego
+    //pointsObtained: son los puntos obtenidos en todo el juego
+    //numberMatches: numero de partidos en todo el juego
+    private int startingNumber;
+    private String name;
+    private String location;
+    private int pointsObtained;
+    private int numberMatches;
 
-    public Jugador(int numero, String nombre, String ubicacion, int puntos, int partidas) {
-        this.numero = numero;
-        this.nombre = nombre;
-        this.ubicacion = ubicacion;
-        this.puntos = puntos;
-        this.partidas = partidas;
+    public Jugador(int startingNumber, String name, String location, int pointsObtained, int numberMatches) {
+        this.name = name;
+        this.location = location;
+        this.startingNumber = startingNumber;
+        this.pointsObtained = pointsObtained;
+        this.numberMatches = numberMatches;
     }
 
-    public int getNumero() {
-        return numero;
+    public String getName() {
+
+        return name;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getLocation() {
+        return location;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
+    public int getStartingNumber() {
+        return startingNumber;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setStartingNumber(int startingNumber) {
+        this.startingNumber = startingNumber;
     }
 
-    public int getPuntos() {
-        return puntos;
+    public int getPointsObtained() {
+        return pointsObtained;
     }
 
-    public void setPuntos(int puntos) {
-        this.puntos = puntos;
+    public void setPointsObtained(int pointsObtained) {
+        this.pointsObtained = pointsObtained;
     }
 
-    public int getPartidas() {
-        return partidas;
+    public int getNumberMatches() {
+        return numberMatches;
     }
 
-    public void setPartidas(int partidas) {
-        this.partidas = partidas;
+    public void setNumberMatches(int numberMatches) {
+        this.numberMatches = numberMatches;
+    }
+
+    @Override
+    public String toString() {
+        return "Jugador{" +
+                "name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", startingNumber=" + startingNumber +
+                ", pointsObtained=" + pointsObtained +
+                ", numberMatches=" + numberMatches +
+                '}';
     }
 }
