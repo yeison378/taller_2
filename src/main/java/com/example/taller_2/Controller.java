@@ -55,6 +55,8 @@ public class Controller implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        posJug = 0;
+
         player = new ArrayList<>();
         ServiceJugador serviceJ = new ServiceJugador("","jugadores.csv");
         try {
@@ -75,6 +77,7 @@ public class Controller implements Initializable {
         pointsObtained.setCellValueFactory(new PropertyValueFactory("pointsObtained"));
         numberMatches.setCellValueFactory(new PropertyValueFactory("numberMatches"));
         tablaJugadores();
+        seleccionJugador.setText(player.get(posJug).getName());
     }
 
     @FXML
@@ -113,11 +116,11 @@ public class Controller implements Initializable {
     @FXML
     void mov(ActionEvent event) throws InterruptedException {
 
-        Platform.runLater(a());
+//        Platform.runLater(a());
 
     }
 
-    private Runnable a(){
+ /*   private Runnable a(){
         return ()->{
             for(int i = 0; i<192;i++){
 
@@ -151,5 +154,32 @@ public class Controller implements Initializable {
 
             }
         };
+    }*/
+
+//    * seleccion de jugador ------------------------------------------------------------
+    @FXML
+    private Button adelanteJUgador;
+
+    @FXML
+    private Button atrasJugador;
+
+    @FXML
+    private TextField seleccionJugador;
+private int posJug ;
+    @FXML
+    void movJugador(ActionEvent event) {
+        Object obj = event.getSource();
+        if(obj.equals(adelanteJUgador)){
+
+           if(posJug<player.size()-1)posJug++;
+           else posJug = 0;
+           seleccionJugador.setText(player.get(posJug).getName());
+        }else{
+
+            if(posJug>0)posJug--;
+            else posJug = player.size()-1;
+            seleccionJugador.setText(player.get(posJug).getName());
+        }
+
     }
 }
