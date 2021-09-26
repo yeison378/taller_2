@@ -57,9 +57,10 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        meta.setVisible(false);
         Collections.addAll(imagenes = new ArrayList<>(), jugador, jugador1, jugador2, jugador3,jugador4);
         posJug = 0;
-        j = new Juego(5, 960);
+        j = null;
         player = new ArrayList<>();
         ServiceJugador serviceJ = new ServiceJugador("", "jugadores.csv");
         try {
@@ -80,7 +81,7 @@ public class Controller implements Initializable {
         pointsObtained.setCellValueFactory(new PropertyValueFactory("pointsObtained"));
         numberMatches.setCellValueFactory(new PropertyValueFactory("numberMatches"));
         tablaJugadores();
-        seleccionJugador.setText(player.get(posJug).getName());
+        seleccionJugador.setText(posJug+"");
     }
 
     @FXML
@@ -90,20 +91,27 @@ public class Controller implements Initializable {
     void closev(ActionEvent event) {
         System.exit(0);
     }
+    @FXML
+    private ImageView meta;
 
-    // * LO que hace es iniciar a mover los carritos
+    // * LO que hace es iniciar a mover los carritos-----------------------------------------------------------------------------------
     @FXML
     void iniciarJuego(ActionEvent event) {
+        meta.setVisible(true);
+        meta.setX(Integer.parseInt(seleccionJugador.getText()));
+        j = new Juego(5, Integer.parseInt(seleccionJugador.getText()));
         for (int i = 0; i < player.size(); i++) {
             Thread t = new Thread(moverImg(i));
             t.start();
         }
-        j.runn(0, (int) (Math.random() * 50 + 10));
-        j.runn(1, (int) (Math.random() * 50 + 10));
-        j.runn(2, (int) (Math.random() * 50 + 10));
-        j.runn(3, (int) (Math.random() * 50 + 10));
-        j.runn(4, (int) (Math.random() * 50 + 10));
+        j.runn(0, (int) (Math.random() * 10 + 1));
+        j.runn(1, (int) (Math.random() * 10 + 1));
+        j.runn(2, (int) (Math.random() * 10 + 1));
+        j.runn(3, (int) (Math.random() * 10 + 1));
+        j.runn(4, (int) (Math.random() * 10 + 1));
         j.hilo();
+
+
     }
 
     @FXML
@@ -190,14 +198,16 @@ public class Controller implements Initializable {
         Object obj = event.getSource();
         if (obj.equals(adelanteJUgador)) {
 
-            if (posJug < player.size() - 1) posJug++;
-            else posJug = 0;
-            seleccionJugador.setText(player.get(posJug).getName());
+            if(posJug<960)posJug+=20;
+            seleccionJugador.setText(posJug+"");
+
         } else {
 
-            if (posJug > 0) posJug--;
-            else posJug = player.size() - 1;
-            seleccionJugador.setText(player.get(posJug).getName());
+            if (posJug > 0){
+                posJug-=20;
+                seleccionJugador.setText(posJug+"");
+            }
+
         }
     }
 
@@ -206,6 +216,7 @@ public class Controller implements Initializable {
             while ( imagenes.get(j).getX()< 960) {
                 Platform.runLater(() -> {
                     imagenes.get(j).setX(this.j.getJugador().get(j).getKm());
+//                    imagenes.get(j).setX(equivalencia(this.j.getJugador().get(j).getKm()));
                 });
                 try {
                     Thread.sleep(10);
@@ -216,42 +227,23 @@ public class Controller implements Initializable {
         };
     }
 
-    public Runnable moverImg1() {
-        return () -> {
-            while (jugador1.getX() < 100) {
-                Platform.runLater(() -> jugador1.setX(j.getJugador().get(1).getKm()));
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
+    public int equivalencia(int i){
+        /*
+        * 100 -> 960
+        * 1 -> x
+        * */
+    if(i<100){
+        int a =(i*960)/100;
+//        a-=960;
+        int b = 960-a;
+
+        return  a+b;
+    }else{
+
+        return  (i*960)/100;
+    }
     }
 
-    public Runnable moverImg2() {
-        return () -> {
-            while (jugador2.getX() < 960) {
-                Platform.runLater(() -> jugador2.setX(j.getJugador().get(2).getKm()));
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-    }
 
-    public Runnable moverImg3() {
-        return () -> {
-            while (jugador3.getX() < 960) {
-                Platform.runLater(() -> jugador3.setX(j.getJugador().get(3).getKm()));
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-    }
+
 }

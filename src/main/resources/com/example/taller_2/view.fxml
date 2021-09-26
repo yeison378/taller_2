@@ -71,11 +71,6 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <ImageView fitHeight="109.0" fitWidth="121.0" layoutX="73.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@dados.gif" />
-         </image>
-      </ImageView>
       <AnchorPane layoutX="47.0" layoutY="134.0" prefHeight="300.0" prefWidth="500.0" styleClass="highlight" stylesheets="@estilos.css">
          <children>
             <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="188.0" layoutY="243.0" mnemonicParsing="false" onAction="#iniciarJuego" prefHeight="26.0" prefWidth="124.0" styleClass="jugar" stylesheets="@bootones.css" text="JUGAR" textFill="WHITE">
@@ -89,11 +84,11 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <TextField fx:id="seleccionJugador" alignment="CENTER" editable="false" layoutX="132.0" layoutY="68.0" prefHeight="26.0" prefWidth="235.0" styleClass="highlight" stylesheets="@estilos.css">
+            <TextField fx:id="seleccionJugador" alignment="CENTER" editable="false" layoutX="129.0" layoutY="96.0" prefHeight="26.0" prefWidth="235.0" styleClass="highlight" stylesheets="@estilos.css">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></TextField>
-            <Button fx:id="adelanteJUgador" layoutX="374.0" layoutY="69.0" mnemonicParsing="false" onAction="#movJugador" prefHeight="13.0" prefWidth="16.0" styleClass="flecha" stylesheets="@bootones.css">
+            <Button fx:id="adelanteJUgador" layoutX="371.0" layoutY="97.0" mnemonicParsing="false" onAction="#movJugador" prefHeight="13.0" prefWidth="16.0" styleClass="flecha" stylesheets="@bootones.css">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -102,7 +97,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="atrasJugador" layoutX="100.0" layoutY="69.0" mnemonicParsing="false" onAction="#movJugador" prefHeight="13.0" prefWidth="16.0" styleClass="flecha" stylesheets="@bootones.css">
+            <Button fx:id="atrasJugador" layoutX="97.0" layoutY="97.0" mnemonicParsing="false" onAction="#movJugador" prefHeight="13.0" prefWidth="16.0" styleClass="flecha" stylesheets="@bootones.css">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -111,7 +106,22 @@
                   </ImageView>
                </graphic>
             </Button>
+            <ImageView fitHeight="109.0" fitWidth="121.0" layoutX="189.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@dados.gif" />
+               </image>
+            </ImageView>
+            <Label layoutX="149.0" layoutY="43.0" text="RECORRIDO KM" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
+      <ImageView fx:id="meta" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@meta1.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
