@@ -98,11 +98,11 @@ public class Controller implements Initializable {
             Thread t = new Thread(moverImg(i));
             t.start();
         }
-        j.runn(0, (int) (Math.random() * 500 + 100));
-        j.runn(1, (int) (Math.random() * 500 + 100));
-        j.runn(2, (int) (Math.random() * 500 + 100));
-        j.runn(3, (int) (Math.random() * 500 + 100));
-        j.runn(4, (int) (Math.random() * 500 + 100));
+        j.runn(0, (int) (Math.random() * 50 + 10));
+        j.runn(1, (int) (Math.random() * 50 + 10));
+        j.runn(2, (int) (Math.random() * 50 + 10));
+        j.runn(3, (int) (Math.random() * 50 + 10));
+        j.runn(4, (int) (Math.random() * 50 + 10));
         j.hilo();
     }
 
