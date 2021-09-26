@@ -9,6 +9,7 @@ public class Jugador {
     private String location;
     private int pointsObtained;
     private int numberMatches;
+    private int km;
 
     public Jugador(int startingNumber, String name, String location, int pointsObtained, int numberMatches) {
         this.name = name;
@@ -16,6 +17,7 @@ public class Jugador {
         this.startingNumber = startingNumber;
         this.pointsObtained = pointsObtained;
         this.numberMatches = numberMatches;
+        km=0;
     }
 
     public String getName() {
@@ -59,6 +61,18 @@ public class Jugador {
         this.numberMatches = numberMatches;
     }
 
+    public int getKm() {
+        return km;
+    }
+
+    public void setKm(int km) {
+        this.km = km;
+    }
+
+    public void ver(){
+        System.out.println("Nombre "+name+ " KM "+km);
+    }
+
     @Override
     public String toString() {
         return "Jugador{" +
@@ -67,6 +81,7 @@ public class Jugador {
                 ", location='" + location + '\'' +
                 ", pointsObtained=" + pointsObtained +
                 ", numberMatches=" + numberMatches +
+                ", km=" + km +
                 '}';
     }
 }
