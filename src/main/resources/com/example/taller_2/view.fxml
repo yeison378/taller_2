@@ -78,7 +78,7 @@
       </ImageView>
       <AnchorPane layoutX="47.0" layoutY="134.0" prefHeight="300.0" prefWidth="500.0" styleClass="highlight" stylesheets="@estilos.css">
          <children>
-            <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="188.0" layoutY="243.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" styleClass="jugar" stylesheets="@bootones.css" text="JUGAR" textFill="WHITE">
+            <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="188.0" layoutY="243.0" mnemonicParsing="false" onAction="#iniciarJuego" prefHeight="26.0" prefWidth="124.0" styleClass="jugar" stylesheets="@bootones.css" text="JUGAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

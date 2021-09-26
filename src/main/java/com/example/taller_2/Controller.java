@@ -26,6 +26,7 @@ public class Controller implements Initializable {
     private ArrayList<Jugador> player;
     public ObservableList<Jugador> jugP;
     private ObservableList<Jugador>jug;
+    private Juego j;
 
     @FXML
     private TableView<Jugador> clasificacion;
@@ -56,7 +57,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         posJug = 0;
-
+        j = new Juego(5, 960);
         player = new ArrayList<>();
         ServiceJugador serviceJ = new ServiceJugador("","jugadores.csv");
         try {
@@ -86,6 +87,25 @@ public class Controller implements Initializable {
     @FXML
     void closev(ActionEvent event) {
     System.exit(0);
+    }
+
+    // * LO que hace es iniciar a mover los carritos
+    @FXML
+    void iniciarJuego(ActionEvent event) {
+        j.runn(0,(int) (Math.random()*200+100));
+        j.runn(1, (int) (Math.random()*200+100));
+        j.runn(2,(int) (Math.random()*200+100));
+        j.runn(3,(int) (Math.random()*200+100));
+        j.runn(4,(int) (Math.random()*200+100));
+        j.hilo();
+        synchronized (this){
+            Thread t =  new Thread(moverImg());
+            t.start();
+            Thread t1 =  new Thread(moverImg1());
+            t1.start();
+        }
+        //Thread t2 =  new Thread(moverImg2());
+        //t2.start();
     }
 
     @FXML
@@ -180,6 +200,57 @@ private int posJug ;
             else posJug = player.size()-1;
             seleccionJugador.setText(player.get(posJug).getName());
         }
+    }
 
+    public Runnable moverImg(){
+        return ()->{
+            while (jugador.getX() < 960){
+                Platform.runLater(() -> jugador.setX(j.getJugador().get(0).getKm()));
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+    }
+
+    public Runnable moverImg1(){
+        return ()->{
+            while (jugador1.getX() < 960){
+                Platform.runLater(() -> jugador1.setX(j.getJugador().get(1).getKm()));
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+    }
+
+    public Runnable moverImg2(){
+        return ()->{
+            while (jugador2.getX() < 960){
+                Platform.runLater(() -> jugador2.setX(j.getJugador().get(2).getKm()));
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+    }
+
+    public Runnable moverImg3(){
+        return ()->{
+            while (jugador3.getX() < 960){
+                Platform.runLater(() -> jugador3.setX(j.getJugador().get(3).getKm()));
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
     }
 }
