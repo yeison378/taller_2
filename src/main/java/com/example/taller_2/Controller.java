@@ -13,8 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 // * cualquier cosa :)
 // ! hola
@@ -25,41 +24,44 @@ public class Controller implements Initializable {
 
     private ArrayList<Jugador> player;
     public ObservableList<Jugador> jugP;
-    private ObservableList<Jugador>jug;
+    private ObservableList<Jugador> jug;
     private Juego j;
+    private List<ImageView> imagenes;
 
     @FXML
     private TableView<Jugador> clasificacion;
 
     @FXML
-    private TableColumn<?,?> startingNumber;
+    private TableColumn<?, ?> startingNumber;
 
     @FXML
-    private TableColumn<?,?> name;
+    private TableColumn<?, ?> name;
 
     @FXML
-    private TableColumn<?,?> location;
+    private TableColumn<?, ?> location;
 
     @FXML
-    private TableColumn<?,?> pointsObtained;
+    private TableColumn<?, ?> pointsObtained;
 
     @FXML
-    private TableColumn<?,?> numberMatches;
+    private TableColumn<?, ?> numberMatches;
 
     //Se le colocan los datos a la tablas
-    public void tablaJugadores(){
-        for (Jugador j: player){
+    public void tablaJugadores() {
+        for (Jugador j : player) {
             Jugador p = j;
             jugP.add(p);
             clasificacion.setItems(jugP);
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Collections.addAll(imagenes = new ArrayList<>(), jugador, jugador1, jugador2, jugador3,jugador4);
         posJug = 0;
         j = new Juego(5, 960);
         player = new ArrayList<>();
-        ServiceJugador serviceJ = new ServiceJugador("","jugadores.csv");
+        ServiceJugador serviceJ = new ServiceJugador("", "jugadores.csv");
         try {
             serviceJ.loadDate();
         } catch (IOException e) {
@@ -86,26 +88,22 @@ public class Controller implements Initializable {
 
     @FXML
     void closev(ActionEvent event) {
-    System.exit(0);
+        System.exit(0);
     }
 
     // * LO que hace es iniciar a mover los carritos
     @FXML
     void iniciarJuego(ActionEvent event) {
-        j.runn(0,(int) (Math.random()*200+100));
-        j.runn(1, (int) (Math.random()*200+100));
-        j.runn(2,(int) (Math.random()*200+100));
-        j.runn(3,(int) (Math.random()*200+100));
-        j.runn(4,(int) (Math.random()*200+100));
-        j.hilo();
-        synchronized (this){
-            Thread t =  new Thread(moverImg());
+        for (int i = 0; i < player.size(); i++) {
+            Thread t = new Thread(moverImg(i));
             t.start();
-            Thread t1 =  new Thread(moverImg1());
-            t1.start();
         }
-        //Thread t2 =  new Thread(moverImg2());
-        //t2.start();
+        j.runn(0, (int) (Math.random() * 500 + 100));
+        j.runn(1, (int) (Math.random() * 500 + 100));
+        j.runn(2, (int) (Math.random() * 500 + 100));
+        j.runn(3, (int) (Math.random() * 500 + 100));
+        j.runn(4, (int) (Math.random() * 500 + 100));
+        j.hilo();
     }
 
     @FXML
@@ -113,24 +111,24 @@ public class Controller implements Initializable {
 
     @FXML
     void minimizarV(ActionEvent event) {
-    Stage stage = (Stage) minimizar.getScene().getWindow();
-    stage.setIconified(true);
+        Stage stage = (Stage) minimizar.getScene().getWindow();
+        stage.setIconified(true);
     }
 
     @FXML
-    private ImageView jugador,jugador1,jugador2,jugador3,jugador4;
+    private ImageView jugador, jugador1, jugador2, jugador3, jugador4;
 
     @FXML
-    private Button mover,aleatorio;
+    private Button mover, aleatorio;
 
     @FXML
     private TextField texto;
 
     @FXML
     void moverEnX(ActionEvent event) {
-        Jugador j = new Jugador(1,"nombre","ubicacion",1,1);
-       jug.add(j);
-       clasificacion.setItems(jug);
+        Jugador j = new Jugador(1, "nombre", "ubicacion", 1, 1);
+        jug.add(j);
+        clasificacion.setItems(jug);
     }
 
     @FXML
@@ -176,7 +174,7 @@ public class Controller implements Initializable {
         };
     }*/
 
-//    * seleccion de jugador ------------------------------------------------------------
+    //    * seleccion de jugador ------------------------------------------------------------
     @FXML
     private Button adelanteJUgador;
 
@@ -185,27 +183,30 @@ public class Controller implements Initializable {
 
     @FXML
     private TextField seleccionJugador;
-private int posJug ;
+    private int posJug;
+
     @FXML
     void movJugador(ActionEvent event) {
         Object obj = event.getSource();
-        if(obj.equals(adelanteJUgador)){
+        if (obj.equals(adelanteJUgador)) {
 
-           if(posJug<player.size()-1)posJug++;
-           else posJug = 0;
-           seleccionJugador.setText(player.get(posJug).getName());
-        }else{
+            if (posJug < player.size() - 1) posJug++;
+            else posJug = 0;
+            seleccionJugador.setText(player.get(posJug).getName());
+        } else {
 
-            if(posJug>0)posJug--;
-            else posJug = player.size()-1;
+            if (posJug > 0) posJug--;
+            else posJug = player.size() - 1;
             seleccionJugador.setText(player.get(posJug).getName());
         }
     }
 
-    public Runnable moverImg(){
-        return ()->{
-            while (jugador.getX() < 960){
-                Platform.runLater(() -> jugador.setX(j.getJugador().get(0).getKm()));
+    public Runnable moverImg(int j) {
+        return () -> {
+            while ( imagenes.get(j).getX()< 960) {
+                Platform.runLater(() -> {
+                    imagenes.get(j).setX(this.j.getJugador().get(j).getKm());
+                });
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -215,9 +216,9 @@ private int posJug ;
         };
     }
 
-    public Runnable moverImg1(){
-        return ()->{
-            while (jugador1.getX() < 960){
+    public Runnable moverImg1() {
+        return () -> {
+            while (jugador1.getX() < 100) {
                 Platform.runLater(() -> jugador1.setX(j.getJugador().get(1).getKm()));
                 try {
                     Thread.sleep(10);
@@ -228,9 +229,9 @@ private int posJug ;
         };
     }
 
-    public Runnable moverImg2(){
-        return ()->{
-            while (jugador2.getX() < 960){
+    public Runnable moverImg2() {
+        return () -> {
+            while (jugador2.getX() < 960) {
                 Platform.runLater(() -> jugador2.setX(j.getJugador().get(2).getKm()));
                 try {
                     Thread.sleep(10);
@@ -241,9 +242,9 @@ private int posJug ;
         };
     }
 
-    public Runnable moverImg3(){
-        return ()->{
-            while (jugador3.getX() < 960){
+    public Runnable moverImg3() {
+        return () -> {
+            while (jugador3.getX() < 960) {
                 Platform.runLater(() -> jugador3.setX(j.getJugador().get(3).getKm()));
                 try {
                     Thread.sleep(10);

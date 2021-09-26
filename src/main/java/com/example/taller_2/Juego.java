@@ -38,15 +38,17 @@ public class Juego {
 
     // * En este metodo el carrito corre
     public boolean correr(int posicion) {
-        int dado = (int) (Math.random() * 12 + 1);
-        if (jugador.get(posicion).getKm() < level_km) {
-            jugador.get(posicion).setKm(dado + jugador.get(posicion).getKm());
-            return true;
-        } else {
-            this.posicion.add(jugador.get(posicion));
-            // pruebaPosicion();
-            System.out.println("-> " + this.posicion.size());
-            return false;
+        synchronized (this){
+            int dado = (int) (Math.random() * 12 + 1);
+            if (jugador.get(posicion).getKm() < level_km) {
+                jugador.get(posicion).setKm(dado + jugador.get(posicion).getKm());
+                return true;
+            } else {
+                this.posicion.add(jugador.get(posicion));
+                // pruebaPosicion();
+                System.out.println("-> " + this.posicion.size());
+                return false;
+            }
         }
     }
 
@@ -72,7 +74,7 @@ public class Juego {
 
     public void runn(int posicion, int tiempo) {
         Thread t = new Thread(() -> {
-            synchronized (this) {
+            //synchronized (this) {
                 boolean a = false;
                 do {
                     a = correr(posicion);
@@ -83,7 +85,7 @@ public class Juego {
                     }
                 } while (a);
                 aux++;
-            }
+           //}
         });
         t.start();
     }
