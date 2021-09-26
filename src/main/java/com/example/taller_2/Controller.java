@@ -16,6 +16,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+// * cualquier cosa :)
+// ! hola
+// ? hellow
+
+
 public class Controller implements Initializable {
 
     private ArrayList<Jugador> player;

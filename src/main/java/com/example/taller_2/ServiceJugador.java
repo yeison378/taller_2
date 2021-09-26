@@ -26,9 +26,9 @@ public class ServiceJugador {
             StringTokenizer tokens = new StringTokenizer(record,",");
             while (tokens.hasMoreTokens()){
                 try{
+                    int startingNumber = Integer.parseInt(tokens.nextToken());
                     String name = tokens.nextToken();
                     String location = tokens.nextToken();
-                    int startingNumber = Integer.parseInt(tokens.nextToken());
                     int pointsObtained = Integer.parseInt(tokens.nextToken());
                     int numberMatches = Integer.parseInt(tokens.nextToken());
                     jugador.add(new Jugador(startingNumber,name,location,pointsObtained, numberMatches));
@@ -112,7 +112,7 @@ public class ServiceJugador {
             int startingNumber = j.getStartingNumber();
             int pointsObtained = j.getPointsObtained();
             int numberMatches = j.getNumberMatches();
-            dump[cont++] = name+","+location+","+startingNumber+","+pointsObtained+","+numberMatches;
+            dump[cont++] = startingNumber+","+name+","+location+","+pointsObtained+","+numberMatches;
         }
         file.setContentFile(dump);
     }
