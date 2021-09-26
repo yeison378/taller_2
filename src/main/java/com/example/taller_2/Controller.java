@@ -10,7 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
+import static com.example.taller_2.Juego.playing;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -93,7 +93,6 @@ public class Controller implements Initializable {
     }
     @FXML
     private ImageView meta;
-
     // * LO que hace es iniciar a mover los carritos-----------------------------------------------------------------------------------
     @FXML
     void iniciarJuego(ActionEvent event) {
@@ -103,6 +102,7 @@ public class Controller implements Initializable {
         for (int i = 0; i < player.size(); i++) {
             Thread t = new Thread(moverImg(i));
             t.start();
+            verificarHilo(t);
         }
         j.runn(0, (int) (Math.random() * 10 + 1));
         j.runn(1, (int) (Math.random() * 10 + 1));
@@ -110,8 +110,27 @@ public class Controller implements Initializable {
         j.runn(3, (int) (Math.random() * 10 + 1));
         j.runn(4, (int) (Math.random() * 10 + 1));
         j.hilo();
+    }
 
-
+    // *  para mirar cuando el hilo termine su ejecucion
+    public void verificarHilo(Thread t){
+        Thread th = new Thread(() -> {
+            int i =0;
+            do{
+                i++;
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }while (playing);
+            System.out.println("Termino");
+            for (Jugador a:j.getPosicion()){
+                System.out.println(a.getName());
+            }
+            System.out.println(".....................................");
+        });
+        th.start();
     }
 
     @FXML
@@ -213,10 +232,10 @@ public class Controller implements Initializable {
 
     public Runnable moverImg(int j) {
         return () -> {
-            while ( imagenes.get(j).getX()< 960) {
+            while ( imagenes.get(j).getX()< Integer.parseInt(seleccionJugador.getText())) {
+                //System.out.println("Entro");
                 Platform.runLater(() -> {
                     imagenes.get(j).setX(this.j.getJugador().get(j).getKm());
-//                    imagenes.get(j).setX(equivalencia(this.j.getJugador().get(j).getKm()));
                 });
                 try {
                     Thread.sleep(10);

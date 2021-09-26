@@ -38,7 +38,7 @@ public class Juego {
 
     // * En este metodo el carrito corre
     public boolean correr(int posicion) {
-        synchronized (this){
+        synchronized (this) {
             int dado = (int) (Math.random() * 2 + 1);
             if (jugador.get(posicion).getKm() < level_km) {
                 jugador.get(posicion).setKm(dado + jugador.get(posicion).getKm());
@@ -60,6 +60,7 @@ public class Juego {
     public void pruebaPosicion() {
         int i = 1;
         for (Jugador j : posicion) {
+
             System.out.println(i + " - " + j.getName());
             i++;
         }
@@ -75,21 +76,21 @@ public class Juego {
     public void runn(int posicion, int tiempo) {
         Thread t = new Thread(() -> {
             //synchronized (this) {
-                boolean a = false;
-                do {
-                    a = correr(posicion);
-                    try {
-                        Thread.sleep(tiempo);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } while (a);
-                aux++;
-           //}
+            boolean a = false;
+            do {
+                a = correr(posicion);
+                try {
+                    Thread.sleep(tiempo);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } while (a);
+            aux++;
+            //}
         });
         t.start();
     }
-
+    public static boolean playing = true;
     public void hilo() {
         Thread t = new Thread(() -> {
             while (posicion.size() != 5) {
@@ -99,10 +100,12 @@ public class Juego {
                     e.printStackTrace();
                 }
             }
+            playing = false;
             pruebaPosicion();
         });
         t.start();
     }
+
 
     public int getnPlayer() {
         return nPlayer;
