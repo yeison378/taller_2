@@ -107,7 +107,6 @@ public class Juego {
         t.start();
     }
 
-
     public int getnPlayer() {
         return nPlayer;
     }

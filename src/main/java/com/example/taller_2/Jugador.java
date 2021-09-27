@@ -10,6 +10,7 @@ public class Jugador {
     private int pointsObtained;
     private int numberMatches;
     private int km;
+    private int puntoCarrera;
 
     public Jugador(int startingNumber, String name, String location, int pointsObtained, int numberMatches) {
         this.name = name;
@@ -18,10 +19,20 @@ public class Jugador {
         this.pointsObtained = pointsObtained;
         this.numberMatches = numberMatches;
         km=0;
+        puntoCarrera =0;
+    }
+
+    public int compareTo(Jugador o2) {
+        if(getPointsObtained()>o2.getPointsObtained()){
+            return -1;
+        }else if(getPointsObtained()>o2.getPointsObtained()){
+            return 0;
+        }else{
+            return 1;
+        }
     }
 
     public String getName() {
-
         return name;
     }
 
@@ -67,6 +78,14 @@ public class Jugador {
 
     public void setKm(int km) {
         this.km = km;
+    }
+
+    public int getPuntoCarrera() {
+        return puntoCarrera;
+    }
+
+    public void setPuntoCarrera(int puntoCarrera) {
+        this.puntoCarrera = puntoCarrera;
     }
 
     public void ver(){

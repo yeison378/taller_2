@@ -23,7 +23,7 @@ import java.util.*;
 // ? hellow
 
 
-public class Controller implements Initializable {
+public class Controller implements Initializable, Comparator<Jugador> {
 
     private ArrayList<Jugador> player;
     public ObservableList<Jugador> jugP;
@@ -58,6 +58,56 @@ public class Controller implements Initializable {
         }
     }
 
+    // * se asiganron los puntaje obtendios a los jugadores de acuerdo a su puesto
+    public void asignarPuntajes(){
+        Thread th = new Thread(() -> {
+            while (j.getPosicion().size()!= 5){
+                System.out.println("->");
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            j.getPosicion().get(0).setPuntoCarrera(50);
+            j.getPosicion().get(1).setPuntoCarrera(40);
+            j.getPosicion().get(2).setPuntoCarrera(30);
+            j.getPosicion().get(3).setPuntoCarrera(20);
+            j.getPosicion().get(4).setPuntoCarrera(10);
+            System.out.println("Orden bine: ");
+            for(Jugador a: j.getPosicion()){
+                setPoints(a.getName(),a.getPuntoCarrera());
+                System.out.println(a.getName()+"_>"+a.getPuntoCarrera());
+            }
+            // ! aquie va el metodo ordenar ...................................................
+            ordenarJugaodres();
+            resetearTabla();
+        });
+        th.start();
+    }
+
+    // * Este metodo lo que hace es ordenar todos los jugadores de acuerdo a su puntaje
+    public void ordenarJugaodres(){
+        player.sort((o1, o2) -> o1.compareTo(o2));
+        for (Jugador a: player){
+            System.out.println(a.getName()+"->"+a.getPointsObtained());
+        }
+        for (int i = 0; i < player.size(); i++) {
+            player.get(i).setStartingNumber(i+1);
+        }
+    }
+
+
+
+    // * lo que hace este metodo es sumarle los puntos nuevos al jugador
+    public void setPoints(String namePlayer, int points){
+        for (int i = 0; i < player.size(); i++) {
+            if (player.get(i).getName().equalsIgnoreCase(namePlayer)){
+                player.get(i).setPointsObtained(points+player.get(i).getPointsObtained());
+            }
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         meta.setVisible(false);
@@ -77,6 +127,18 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        jugP = FXCollections.observableArrayList();
+        startingNumber.setCellValueFactory(new PropertyValueFactory("startingNumber"));
+        name.setCellValueFactory(new PropertyValueFactory("name"));
+        location.setCellValueFactory(new PropertyValueFactory("location"));
+        pointsObtained.setCellValueFactory(new PropertyValueFactory("pointsObtained"));
+        numberMatches.setCellValueFactory(new PropertyValueFactory("numberMatches"));
+        tablaJugadores();
+        seleccionJugador.setText(posJug + "");
+    }
+
+    public void resetearTabla(){
+       clasificacion.getItems().clear();
         jugP = FXCollections.observableArrayList();
         startingNumber.setCellValueFactory(new PropertyValueFactory("startingNumber"));
         name.setCellValueFactory(new PropertyValueFactory("name"));
@@ -115,6 +177,8 @@ public class Controller implements Initializable {
         j.runn(3, (int) (Math.random() * 10 + 1));
         j.runn(4, (int) (Math.random() * 10 + 1));
         j.hilo();
+        asignarPuntajes();
+        //resetearTabla();
     }
 
     // *  para mirar cuando el hilo termine su ejecucion
@@ -254,4 +318,8 @@ public class Controller implements Initializable {
     }
 
 
+    @Override
+    public int compare(Jugador o1, Jugador o2) {
+        return 0;
+    }
 }
