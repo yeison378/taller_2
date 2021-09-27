@@ -84,7 +84,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <TextField fx:id="seleccionJugador" alignment="CENTER" editable="false" layoutX="129.0" layoutY="96.0" prefHeight="26.0" prefWidth="235.0" styleClass="highlight" stylesheets="@estilos.css">
+            <TextField fx:id="seleccionJugador" alignment="CENTER" layoutX="129.0" layoutY="96.0" prefHeight="26.0" prefWidth="235.0" styleClass="highlight" stylesheets="@estilos.css">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></TextField>
@@ -123,5 +123,55 @@
             <Image url="@meta1.png" />
          </image>
       </ImageView>
+      <Label fx:id="ps1" layoutX="733.0" layoutY="411.0" text="-----------" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="ps2" layoutX="733.0" layoutY="463.0" text="-----------" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="ps3" layoutX="733.0" layoutY="515.0" text="-----------" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="ps4" layoutX="733.0" layoutY="567.0" text="-----------" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="ps5" layoutX="733.0" layoutY="619.0" text="-----------" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="ps11" layoutX="685.0" layoutY="411.0" text="#1" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="ps111" layoutX="685.0" layoutY="463.0" text="#2" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="ps1111" layoutX="685.0" layoutY="515.0" text="#3" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="ps11111" layoutX="685.0" layoutY="567.0" text="#4" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="ps111111" layoutX="685.0" layoutY="619.0" text="#5" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
