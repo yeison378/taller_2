@@ -82,6 +82,8 @@ public class Controller implements Initializable, Comparator<Jugador> {
             // ! aquie va el metodo ordenar ...................................................
             ordenarJugaodres();
             resetearTabla();
+            borrrarPersistencia();
+            agregraPersistencia();
         });
         th.start();
     }
@@ -97,14 +99,44 @@ public class Controller implements Initializable, Comparator<Jugador> {
         }
     }
 
-
-
     // * lo que hace este metodo es sumarle los puntos nuevos al jugador
     public void setPoints(String namePlayer, int points){
         for (int i = 0; i < player.size(); i++) {
             if (player.get(i).getName().equalsIgnoreCase(namePlayer)){
                 player.get(i).setPointsObtained(points+player.get(i).getPointsObtained());
             }
+        }
+    }
+    public void borrrarPersistencia(){
+        ServiceJugador serviceJ = new ServiceJugador("", "jugadores.csv");
+        try {
+            serviceJ.loadDate();
+        } catch (IOException e) {
+            System.out.println("ERROR");
+        }
+        try {
+            serviceJ.removePlayer();
+            serviceJ.dumpData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void agregraPersistencia(){
+        ServiceJugador serviceJ = new ServiceJugador("", "jugadores.csv");
+        for (int i = 0; i < player.size(); i++) {
+            System.out.println(player.get(i).getName()+"<->"+player.get(i).getPointsObtained());
+            serviceJ.addPlayer(player.get(i));
+        }
+        try {
+            serviceJ.loadDate();
+        } catch (IOException e) {
+            System.out.println("ERROR");
+        }
+        try {
+            serviceJ.dumpData();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -169,21 +201,110 @@ public class Controller implements Initializable, Comparator<Jugador> {
         for (int i = 0; i < player.size(); i++) {
             Thread t = new Thread(moverImg(i));
             t.start();
-            verificarHilo(t);
+//            verificarHilo(t);
+            tablaPuntuacion();
         }
-        j.runn(0, (int) (Math.random() * 10 + 1));
-        j.runn(1, (int) (Math.random() * 10 + 1));
-        j.runn(2, (int) (Math.random() * 10 + 1));
-        j.runn(3, (int) (Math.random() * 10 + 1));
-        j.runn(4, (int) (Math.random() * 10 + 1));
+        j.runn(0, (int) (Math.random() * 50 + 10));
+        j.runn(1, (int) (Math.random() * 50+ 10));
+        j.runn(2, (int) (Math.random() * 50 + 10));
+        j.runn(3, (int) (Math.random() * 50 + 10));
+        j.runn(4, (int) (Math.random() * 50 + 10));
         j.hilo();
         asignarPuntajes();
+
         //resetearTabla();
     }
 
     // *  para mirar cuando el hilo termine su ejecucion
     @FXML
     private Label ps1, ps2, ps3, ps4, ps5;
+    public void tablaPuntuacion() {
+        Thread th = new Thread(() -> {
+
+            do {
+                Platform.runLater(() -> {
+                    if(j.getPosicion().size()==1){
+                        ps1.setText(j.getPosicion().get(0).getName());
+                        ps1.setTextFill(Color.RED);
+                    }else if(j.getPosicion().size()==2){
+                        ps1.setText(j.getPosicion().get(0).getName());
+                        ps1.setTextFill(Color.RED);
+
+                        ps2.setText(j.getPosicion().get(1).getName());
+                        ps2.setTextFill(Color.BLUE);
+
+                    }else if(j.getPosicion().size()==3){
+                        ps1.setText(j.getPosicion().get(0).getName());
+                        ps1.setTextFill(Color.RED);
+
+                        ps2.setText(j.getPosicion().get(1).getName());
+                        ps2.setTextFill(Color.BLUE);
+
+                        ps3.setText(j.getPosicion().get(2).getName());
+                        ps3.setTextFill(Color.BLUE);
+
+                    }else if(j.getPosicion().size()==4){
+                        ps1.setText(j.getPosicion().get(0).getName());
+                        ps1.setTextFill(Color.RED);
+
+                        ps2.setText(j.getPosicion().get(1).getName());
+                        ps2.setTextFill(Color.BLUE);
+
+                        ps3.setText(j.getPosicion().get(2).getName());
+                        ps3.setTextFill(Color.BLUE);
+
+                        ps4.setText(j.getPosicion().get(3).getName());
+                        ps4.setTextFill(Color.BLUE);
+
+                    }else if(j.getPosicion().size()==5){
+                        ps1.setText(j.getPosicion().get(0).getName());
+                        ps1.setTextFill(Color.RED);
+
+                        ps2.setText(j.getPosicion().get(1).getName());
+                        ps2.setTextFill(Color.BLUE);
+
+                        ps3.setText(j.getPosicion().get(2).getName());
+                        ps3.setTextFill(Color.BLUE);
+
+                        ps4.setText(j.getPosicion().get(3).getName());
+                        ps4.setTextFill(Color.BLUE);
+
+                        ps5.setText(j.getPosicion().get(4).getName());
+                        ps5.setTextFill(Color.BLUE);
+
+                    }
+                });
+
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } while (j.getPosicion().size() !=5);
+            Platform.runLater(() -> {
+//             if(j.getPosicion().size()==0){
+//                 ps1.setText(j.getPosicion().get(0).getName());
+//                 ps1.setTextFill(Color.RED);
+//             }else if(j.getPosicion().size()==1){
+
+
+            /*    ps2.setText(j.getPosicion().get(1).getName());
+                ps2.setTextFill(Color.BLUE);
+
+                ps3.setText(j.getPosicion().get(2).getName());
+                ps3.setTextFill(Color.BLUE);
+
+                ps4.setText(j.getPosicion().get(3).getName());
+                ps4.setTextFill(Color.BLUE);
+
+                ps5.setText(j.getPosicion().get(4).getName());
+                ps5.setTextFill(Color.BLUE);*/
+//             }
+
+            });
+        });
+        th.start();
+    }
 
     public void verificarHilo(Thread t) {
         Thread th = new Thread(() -> {
