@@ -82,6 +82,8 @@ public class Controller implements Initializable, Comparator<Jugador> {
             // ! aquie va el metodo ordenar ...................................................
             ordenarJugaodres();
             resetearTabla();
+            borrrarPersistencia();
+            agregraPersistencia();
         });
         th.start();
     }
@@ -97,14 +99,44 @@ public class Controller implements Initializable, Comparator<Jugador> {
         }
     }
 
-
-
     // * lo que hace este metodo es sumarle los puntos nuevos al jugador
     public void setPoints(String namePlayer, int points){
         for (int i = 0; i < player.size(); i++) {
             if (player.get(i).getName().equalsIgnoreCase(namePlayer)){
                 player.get(i).setPointsObtained(points+player.get(i).getPointsObtained());
             }
+        }
+    }
+    public void borrrarPersistencia(){
+        ServiceJugador serviceJ = new ServiceJugador("", "jugadores.csv");
+        try {
+            serviceJ.loadDate();
+        } catch (IOException e) {
+            System.out.println("ERROR");
+        }
+        try {
+            serviceJ.removePlayer();
+            serviceJ.dumpData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void agregraPersistencia(){
+        ServiceJugador serviceJ = new ServiceJugador("", "jugadores.csv");
+        for (int i = 0; i < player.size(); i++) {
+            System.out.println(player.get(i).getName()+"<->"+player.get(i).getPointsObtained());
+            serviceJ.addPlayer(player.get(i));
+        }
+        try {
+            serviceJ.loadDate();
+        } catch (IOException e) {
+            System.out.println("ERROR");
+        }
+        try {
+            serviceJ.dumpData();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
