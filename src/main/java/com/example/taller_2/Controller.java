@@ -244,6 +244,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
                         ps3.setTextFill(Color.BLUE);
 
                     }else if(j.getPosicion().size()==4){
+
                         ps1.setText(j.getPosicion().get(0).getName());
                         ps1.setTextFill(Color.RED);
 
@@ -256,7 +257,11 @@ public class Controller implements Initializable, Comparator<Jugador> {
                         ps4.setText(j.getPosicion().get(3).getName());
                         ps4.setTextFill(Color.BLUE);
 
+
+
                     }else if(j.getPosicion().size()==5){
+
+//                        System.out.println("------");
                         ps1.setText(j.getPosicion().get(0).getName());
                         ps1.setTextFill(Color.RED);
 
@@ -281,7 +286,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            } while (j.getPosicion().size() !=5);
+            } while (j.getPosicion().size() <5 || ps5.getText().equalsIgnoreCase("-----------"));
             Platform.runLater(() -> {
 //             if(j.getPosicion().size()==0){
 //                 ps1.setText(j.getPosicion().get(0).getName());
