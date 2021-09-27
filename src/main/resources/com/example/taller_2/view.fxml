@@ -41,7 +41,6 @@
             <Image url="@uña3.png" />
          </image>
       </ImageView>
-      <Button fx:id="aleatorio" layoutX="84.0" layoutY="630.0" mnemonicParsing="false" onAction="#mov" prefHeight="26.0" prefWidth="98.0" styleClass="highlight" stylesheets="@estilos.css" text="aleatorio" />
       <ImageView fx:id="jugador2" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@uña1.png" />
@@ -73,7 +72,7 @@
       </Label>
       <AnchorPane layoutX="47.0" layoutY="134.0" prefHeight="300.0" prefWidth="500.0" styleClass="highlight" stylesheets="@estilos.css">
          <children>
-            <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="188.0" layoutY="243.0" mnemonicParsing="false" onAction="#iniciarJuego" prefHeight="26.0" prefWidth="124.0" styleClass="jugar" stylesheets="@bootones.css" text="JUGAR" textFill="WHITE">
+            <Button fx:id="jugarbtn" alignment="CENTER" contentDisplay="RIGHT" layoutX="188.0" layoutY="243.0" mnemonicParsing="false" onAction="#iniciarJuego" prefHeight="26.0" prefWidth="124.0" styleClass="jugar" stylesheets="@bootones.css" text="JUGAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -116,6 +115,18 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
+            <Button fx:id="reiniciarbtn" alignment="CENTER" contentDisplay="RIGHT" layoutX="188.0" layoutY="243.0" mnemonicParsing="false" onAction="#reiniciarJuego" prefHeight="26.0" prefWidth="124.0" styleClass="jugar" stylesheets="@bootones.css" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@rein.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <ImageView fx:id="meta" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">

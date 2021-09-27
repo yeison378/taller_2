@@ -59,9 +59,9 @@ public class Controller implements Initializable, Comparator<Jugador> {
     }
 
     // * se asiganron los puntaje obtendios a los jugadores de acuerdo a su puesto
-    public void asignarPuntajes(){
+    public void asignarPuntajes() {
         Thread th = new Thread(() -> {
-            while (j.getPosicion().size()!= 5){
+            while (j.getPosicion().size() != 5) {
                 System.out.println("->");
                 try {
                     Thread.sleep(100);
@@ -75,9 +75,9 @@ public class Controller implements Initializable, Comparator<Jugador> {
             j.getPosicion().get(3).setPuntoCarrera(20);
             j.getPosicion().get(4).setPuntoCarrera(10);
             System.out.println("Orden bine: ");
-            for(Jugador a: j.getPosicion()){
-                setPoints(a.getName(),a.getPuntoCarrera());
-                System.out.println(a.getName()+"_>"+a.getPuntoCarrera());
+            for (Jugador a : j.getPosicion()) {
+                setPoints(a.getName(), a.getPuntoCarrera());
+                System.out.println(a.getName() + "_>" + a.getPuntoCarrera());
             }
             // ! aquie va el metodo ordenar ...................................................
             ordenarJugaodres();
@@ -89,25 +89,26 @@ public class Controller implements Initializable, Comparator<Jugador> {
     }
 
     // * Este metodo lo que hace es ordenar todos los jugadores de acuerdo a su puntaje
-    public void ordenarJugaodres(){
+    public void ordenarJugaodres() {
         player.sort((o1, o2) -> o1.compareTo(o2));
-        for (Jugador a: player){
-            System.out.println(a.getName()+"->"+a.getPointsObtained());
+        for (Jugador a : player) {
+            System.out.println(a.getName() + "->" + a.getPointsObtained());
         }
         for (int i = 0; i < player.size(); i++) {
-            player.get(i).setStartingNumber(i+1);
+            player.get(i).setStartingNumber(i + 1);
         }
     }
 
     // * lo que hace este metodo es sumarle los puntos nuevos al jugador
-    public void setPoints(String namePlayer, int points){
+    public void setPoints(String namePlayer, int points) {
         for (int i = 0; i < player.size(); i++) {
-            if (player.get(i).getName().equalsIgnoreCase(namePlayer)){
-                player.get(i).setPointsObtained(points+player.get(i).getPointsObtained());
+            if (player.get(i).getName().equalsIgnoreCase(namePlayer)) {
+                player.get(i).setPointsObtained(points + player.get(i).getPointsObtained());
             }
         }
     }
-    public void borrrarPersistencia(){
+
+    public void borrrarPersistencia() {
         ServiceJugador serviceJ = new ServiceJugador("", "jugadores.csv");
         try {
             serviceJ.loadDate();
@@ -122,10 +123,10 @@ public class Controller implements Initializable, Comparator<Jugador> {
         }
     }
 
-    public void agregraPersistencia(){
+    public void agregraPersistencia() {
         ServiceJugador serviceJ = new ServiceJugador("", "jugadores.csv");
         for (int i = 0; i < player.size(); i++) {
-            System.out.println(player.get(i).getName()+"<->"+player.get(i).getPointsObtained());
+            System.out.println(player.get(i).getName() + "<->" + player.get(i).getPointsObtained());
             serviceJ.addPlayer(player.get(i));
         }
         try {
@@ -142,6 +143,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        reiniciarbtn.setVisible(false);
         meta.setVisible(false);
         Collections.addAll(imagenes = new ArrayList<>(), jugador, jugador1, jugador2, jugador3, jugador4);
         posJug = 0;
@@ -169,8 +171,8 @@ public class Controller implements Initializable, Comparator<Jugador> {
         seleccionJugador.setText(posJug + "");
     }
 
-    public void resetearTabla(){
-       clasificacion.getItems().clear();
+    public void resetearTabla() {
+        clasificacion.getItems().clear();
         jugP = FXCollections.observableArrayList();
         startingNumber.setCellValueFactory(new PropertyValueFactory("startingNumber"));
         name.setCellValueFactory(new PropertyValueFactory("name"));
@@ -193,8 +195,17 @@ public class Controller implements Initializable, Comparator<Jugador> {
     private ImageView meta;
 
     // * LO que hace es iniciar a mover los carritos-----------------------------------------------------------------------------------
+
+    @FXML
+    private Button jugarbtn, reiniciarbtn;
+
     @FXML
     void iniciarJuego(ActionEvent event) {
+
+        seleccionJugador.setDisable(true);
+        atrasJugador.setDisable(true);
+        adelanteJUgador.setDisable(true);
+
         meta.setVisible(true);
         meta.setX(Integer.parseInt(seleccionJugador.getText()));
         j = new Juego(5, Integer.parseInt(seleccionJugador.getText()));
@@ -205,35 +216,62 @@ public class Controller implements Initializable, Comparator<Jugador> {
             tablaPuntuacion();
         }
         j.runn(0, (int) (Math.random() * 50 + 10));
-        j.runn(1, (int) (Math.random() * 50+ 10));
+        j.runn(1, (int) (Math.random() * 50 + 10));
         j.runn(2, (int) (Math.random() * 50 + 10));
         j.runn(3, (int) (Math.random() * 50 + 10));
         j.runn(4, (int) (Math.random() * 50 + 10));
         j.hilo();
         asignarPuntajes();
+        jugarbtn.setDisable(true);
+        jugarbtn.setVisible(false);
+        reiniciarbtn.setVisible(true);
+        reiniciarbtn.setDisable(true);
+    }
 
-        //resetearTabla();
+    @FXML
+    void reiniciarJuego(ActionEvent event) {
+        ps1.setText("-----------");
+        ps2.setText("-----------");
+        ps3.setText("-----------");
+        ps4.setText("-----------");
+        ps5.setText("-----------");
+
+        for (ImageView a :imagenes) {
+            a.setX(14);
+        }
+
+        reiniciarbtn.setVisible(false);
+        jugarbtn.setVisible(true);
+        jugarbtn.setDisable(false);
+        meta.setVisible(false);
+
+        seleccionJugador.setDisable(false);
+        atrasJugador.setDisable(false);
+        adelanteJUgador.setDisable(false);
+
+
     }
 
     // *  para mirar cuando el hilo termine su ejecucion
     @FXML
     private Label ps1, ps2, ps3, ps4, ps5;
+
     public void tablaPuntuacion() {
         Thread th = new Thread(() -> {
 
             do {
                 Platform.runLater(() -> {
-                    if(j.getPosicion().size()==1){
+                    if (j.getPosicion().size() == 1) {
                         ps1.setText(j.getPosicion().get(0).getName());
                         ps1.setTextFill(Color.RED);
-                    }else if(j.getPosicion().size()==2){
+                    } else if (j.getPosicion().size() == 2) {
                         ps1.setText(j.getPosicion().get(0).getName());
                         ps1.setTextFill(Color.RED);
 
                         ps2.setText(j.getPosicion().get(1).getName());
                         ps2.setTextFill(Color.BLUE);
 
-                    }else if(j.getPosicion().size()==3){
+                    } else if (j.getPosicion().size() == 3) {
                         ps1.setText(j.getPosicion().get(0).getName());
                         ps1.setTextFill(Color.RED);
 
@@ -243,7 +281,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
                         ps3.setText(j.getPosicion().get(2).getName());
                         ps3.setTextFill(Color.BLUE);
 
-                    }else if(j.getPosicion().size()==4){
+                    } else if (j.getPosicion().size() == 4) {
 
                         ps1.setText(j.getPosicion().get(0).getName());
                         ps1.setTextFill(Color.RED);
@@ -258,8 +296,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
                         ps4.setTextFill(Color.BLUE);
 
 
-
-                    }else if(j.getPosicion().size()==5){
+                    } else if (j.getPosicion().size() == 5) {
 
 //                        System.out.println("------");
                         ps1.setText(j.getPosicion().get(0).getName());
@@ -286,7 +323,8 @@ public class Controller implements Initializable, Comparator<Jugador> {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            } while (j.getPosicion().size() <5 || ps5.getText().equalsIgnoreCase("-----------"));
+            } while (j.getPosicion().size() < 5 || ps5.getText().equalsIgnoreCase("-----------"));
+            reiniciarbtn.setDisable(false);
             Platform.runLater(() -> {
 //             if(j.getPosicion().size()==0){
 //                 ps1.setText(j.getPosicion().get(0).getName());
@@ -374,12 +412,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
         clasificacion.setItems(jug);
     }
 
-    @FXML
-    void mov(ActionEvent event) throws InterruptedException {
 
-//        Platform.runLater(a());
-
-    }
 
 
     //    * seleccion de jugador ------------------------------------------------------------
