@@ -68,8 +68,10 @@ public class Jugador {
         return numberMatches;
     }
 
-    public void setNumberMatches(int numberMatches) {
-        this.numberMatches = numberMatches;
+    public void setNumberMatches(int numberMatches) {this.numberMatches = numberMatches;}
+
+    public void setNumberMatches() {
+        this.numberMatches ++;
     }
 
     public int getKm() {

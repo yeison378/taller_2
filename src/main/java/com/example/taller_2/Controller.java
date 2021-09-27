@@ -161,6 +161,8 @@ public class Controller implements Initializable, Comparator<Jugador> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        player.sort((o1, o2) -> o1.compareTo(o2));
+        postInicial();
         jugP = FXCollections.observableArrayList();
         startingNumber.setCellValueFactory(new PropertyValueFactory("startingNumber"));
         name.setCellValueFactory(new PropertyValueFactory("name"));
@@ -168,7 +170,20 @@ public class Controller implements Initializable, Comparator<Jugador> {
         pointsObtained.setCellValueFactory(new PropertyValueFactory("pointsObtained"));
         numberMatches.setCellValueFactory(new PropertyValueFactory("numberMatches"));
         tablaJugadores();
-        seleccionJugador.setText(posJug + "");
+        // ! habilitar metodo al terminar -------------------------------------------------------------
+        //seleccionJugador.setText(posJug + "");
+    }
+
+    public void postInicial(){
+        for (int i = 0; i < player.size(); i++) {
+            player.get(i).setStartingNumber(i+1);
+        }
+    }
+
+    public void partidas(){
+        for (Jugador a: player){
+            a.setNumberMatches();
+        }
     }
 
     public void resetearTabla() {
@@ -201,7 +216,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
 
     @FXML
     void iniciarJuego(ActionEvent event) {
-
+        partidas();
         seleccionJugador.setDisable(true);
         atrasJugador.setDisable(true);
         adelanteJUgador.setDisable(true);
@@ -314,7 +329,6 @@ public class Controller implements Initializable, Comparator<Jugador> {
                         ps5.setText(j.getPosicion().get(4).getName());
                         ps5.setTextFill(Color.BLUE);
                         //hola
-
                     }
                 });
 

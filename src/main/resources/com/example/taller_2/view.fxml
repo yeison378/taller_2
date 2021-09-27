@@ -83,7 +83,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <TextField fx:id="seleccionJugador" alignment="CENTER" layoutX="129.0" layoutY="96.0" prefHeight="26.0" prefWidth="235.0" styleClass="highlight" stylesheets="@estilos.css">
+            <TextField fx:id="seleccionJugador" alignment="CENTER" layoutX="129.0" layoutY="96.0" prefHeight="26.0" prefWidth="235.0" styleClass="highlight" stylesheets="@estilos.css" text="500">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></TextField>
