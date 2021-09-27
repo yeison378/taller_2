@@ -271,6 +271,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
 
                         ps5.setText(j.getPosicion().get(4).getName());
                         ps5.setTextFill(Color.BLUE);
+                        //hola
 
                     }
                 });
