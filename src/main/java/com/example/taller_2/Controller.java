@@ -146,7 +146,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
         reiniciarbtn.setVisible(false);
         meta.setVisible(false);
         Collections.addAll(imagenes = new ArrayList<>(), jugador, jugador1, jugador2, jugador3, jugador4);
-        posJug = 0;
+        posJug = 50;
         j = null;
         player = new ArrayList<>();
         ServiceJugador serviceJ = new ServiceJugador("", "jugadores.csv");
@@ -171,17 +171,17 @@ public class Controller implements Initializable, Comparator<Jugador> {
         numberMatches.setCellValueFactory(new PropertyValueFactory("numberMatches"));
         tablaJugadores();
         // ! habilitar metodo al terminar -------------------------------------------------------------
-        //seleccionJugador.setText(posJug + "");
+        seleccionJugador.setText(posJug + "");
     }
 
-    public void postInicial(){
+    public void postInicial() {
         for (int i = 0; i < player.size(); i++) {
-            player.get(i).setStartingNumber(i+1);
+            player.get(i).setStartingNumber(i + 1);
         }
     }
 
-    public void partidas(){
-        for (Jugador a: player){
+    public void partidas() {
+        for (Jugador a : player) {
             a.setNumberMatches();
         }
     }
@@ -241,17 +241,21 @@ public class Controller implements Initializable, Comparator<Jugador> {
         jugarbtn.setVisible(false);
         reiniciarbtn.setVisible(true);
         reiniciarbtn.setDisable(true);
+        Thread im = new Thread(marcasImg());
+        im.start();
     }
 
     @FXML
     void reiniciarJuego(ActionEvent event) {
+        seleccionJugador.setText("50");
+        posJug = 50;
         ps1.setText("-----------");
         ps2.setText("-----------");
         ps3.setText("-----------");
         ps4.setText("-----------");
         ps5.setText("-----------");
 
-        for (ImageView a :imagenes) {
+        for (ImageView a : imagenes) {
             a.setX(14);
         }
 
@@ -263,6 +267,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
         seleccionJugador.setDisable(false);
         atrasJugador.setDisable(false);
         adelanteJUgador.setDisable(false);
+        resetPositionLabel();
 
 
     }
@@ -271,63 +276,76 @@ public class Controller implements Initializable, Comparator<Jugador> {
     @FXML
     private Label ps1, ps2, ps3, ps4, ps5;
 
+    public void resetPositionLabel(){
+        kmActual.setText("0");
+        kmActual1.setText("0");
+        kmActual2.setText("0");
+        kmActual3.setText("0");
+        kmActual4.setText("0");
+
+        kmActual.setLayoutX(25);
+        kmActual1.setLayoutX(25);
+        kmActual2.setLayoutX(25);
+        kmActual3.setLayoutX(25);
+        kmActual4.setLayoutX(25);
+    }
+
     public void tablaPuntuacion() {
         Thread th = new Thread(() -> {
 
             do {
                 Platform.runLater(() -> {
                     if (j.getPosicion().size() == 1) {
-                        ps1.setText(j.getPosicion().get(0).getName());
-                        ps1.setTextFill(Color.RED);
+                        ps1.setText(j.getPosicion().get(0).getName()+" PTS. 50+");
+                        ps1.setTextFill(Color.YELLOW);
                     } else if (j.getPosicion().size() == 2) {
-                        ps1.setText(j.getPosicion().get(0).getName());
-                        ps1.setTextFill(Color.RED);
+                        ps1.setText(j.getPosicion().get(0).getName()+" PTS. 50+");
+                        ps1.setTextFill(Color.YELLOW);
 
-                        ps2.setText(j.getPosicion().get(1).getName());
-                        ps2.setTextFill(Color.BLUE);
+                        ps2.setText(j.getPosicion().get(1).getName()+" PTS. 40+");
+                        ps2.setTextFill(Color.SILVER);
 
                     } else if (j.getPosicion().size() == 3) {
-                        ps1.setText(j.getPosicion().get(0).getName());
-                        ps1.setTextFill(Color.RED);
+                        ps1.setText(j.getPosicion().get(0).getName()+" PTS. 50+");
+                        ps1.setTextFill(Color.YELLOW);
 
-                        ps2.setText(j.getPosicion().get(1).getName());
-                        ps2.setTextFill(Color.BLUE);
+                        ps2.setText(j.getPosicion().get(1).getName()+" PTS. 40+");
+                        ps2.setTextFill(Color.SILVER);
 
-                        ps3.setText(j.getPosicion().get(2).getName());
-                        ps3.setTextFill(Color.BLUE);
+                        ps3.setText(j.getPosicion().get(2).getName()+" PTS. 30+");
+                        ps3.setTextFill(Color.GOLDENROD);
 
                     } else if (j.getPosicion().size() == 4) {
+                        ps1.setText(j.getPosicion().get(0).getName()+" PTS. 50+");
+                        ps1.setTextFill(Color.YELLOW);
 
-                        ps1.setText(j.getPosicion().get(0).getName());
-                        ps1.setTextFill(Color.RED);
+                        ps2.setText(j.getPosicion().get(1).getName()+" PTS. 40+");
+                        ps2.setTextFill(Color.SILVER);
 
-                        ps2.setText(j.getPosicion().get(1).getName());
-                        ps2.setTextFill(Color.BLUE);
+                        ps3.setText(j.getPosicion().get(2).getName()+" PTS. 30+");
+                        ps3.setTextFill(Color.GOLDENROD);
 
-                        ps3.setText(j.getPosicion().get(2).getName());
-                        ps3.setTextFill(Color.BLUE);
-
-                        ps4.setText(j.getPosicion().get(3).getName());
-                        ps4.setTextFill(Color.BLUE);
+                        ps4.setText(j.getPosicion().get(3).getName()+" PTS. 20+");
+                        ps4.setTextFill(Color.ALICEBLUE);
 
 
                     } else if (j.getPosicion().size() == 5) {
 
 //                        System.out.println("------");
-                        ps1.setText(j.getPosicion().get(0).getName());
-                        ps1.setTextFill(Color.RED);
+                        ps1.setText(j.getPosicion().get(0).getName()+" PTS. 50+");
+                        ps1.setTextFill(Color.YELLOW);
 
-                        ps2.setText(j.getPosicion().get(1).getName());
-                        ps2.setTextFill(Color.BLUE);
+                        ps2.setText(j.getPosicion().get(1).getName()+" PTS. 40+");
+                        ps2.setTextFill(Color.SILVER);
 
-                        ps3.setText(j.getPosicion().get(2).getName());
-                        ps3.setTextFill(Color.BLUE);
+                        ps3.setText(j.getPosicion().get(2).getName()+" PTS. 30+");
+                        ps3.setTextFill(Color.GOLDENROD);
 
-                        ps4.setText(j.getPosicion().get(3).getName());
-                        ps4.setTextFill(Color.BLUE);
+                        ps4.setText(j.getPosicion().get(3).getName()+" PTS. 20+");
+                        ps4.setTextFill(Color.ALICEBLUE);
 
-                        ps5.setText(j.getPosicion().get(4).getName());
-                        ps5.setTextFill(Color.BLUE);
+                        ps5.setText(j.getPosicion().get(4).getName()+" PTS. 10+");
+                        ps5.setTextFill(Color.ALICEBLUE);
                         //hola
                     }
                 });
@@ -427,8 +445,6 @@ public class Controller implements Initializable, Comparator<Jugador> {
     }
 
 
-
-
     //    * seleccion de jugador ------------------------------------------------------------
     @FXML
     private Button adelanteJUgador;
@@ -445,18 +461,32 @@ public class Controller implements Initializable, Comparator<Jugador> {
         Object obj = event.getSource();
         if (obj.equals(adelanteJUgador)) {
 
-            if (posJug < 960) posJug += 20;
-            seleccionJugador.setText(posJug + "");
+            if (posJug < 1000){
+                posJug += 50;
+                seleccionJugador.setText(posJug + "");
+            }else{
+                seleccionJugador.setText("50");
+                posJug=50;
+            }
 
-        } else {
+
+        }else {
 
             if (posJug > 0) {
-                posJug -= 20;
+                posJug -= 50;
                 seleccionJugador.setText(posJug + "");
+                if(posJug==0){
+                    seleccionJugador.setText("1000");
+                    posJug = 1000;
+                }
+            }else{
+                seleccionJugador.setText("1000");
+                posJug = 1000;
             }
 
         }
     }
+
 
     public Runnable moverImg(int j) {
         return () -> {
@@ -464,9 +494,52 @@ public class Controller implements Initializable, Comparator<Jugador> {
                 //System.out.println("Entro");
                 Platform.runLater(() -> {
                     imagenes.get(j).setX(this.j.getJugador().get(j).getKm());
+//                    kmActual.setLayoutX(jugador.getX());
+//                    kmActual.setText(jugador.getLayoutX()+"");
                 });
                 try {
                     Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+    }
+
+    @FXML
+    private Label kmActual, kmActual1, kmActual2, kmActual3, kmActual4;
+// * mover kilometraje
+    public Runnable marcasImg() {
+        return () -> {
+            int i = 0;
+            while (jugador.getX() < j.getLevel_km() || jugador1.getX() < j.getLevel_km() || jugador2.getX() < j.getLevel_km() || jugador3.getX() < j.getLevel_km() || jugador4.getX() < j.getLevel_km()) {
+                //System.out.println("Entro");
+                Platform.runLater(() -> {
+
+                    kmActual.setLayoutX(jugador.getX());
+                    String aa = (int)jugador.getX() + "";
+                    kmActual.setText(aa);
+
+                    kmActual1.setLayoutX(jugador1.getX());
+                    String aa1 = (int) jugador1.getX() + "";
+                    kmActual1.setText(aa1);
+
+                    kmActual2.setLayoutX(jugador2.getX());
+                    String aa2 = (int) jugador2.getX() + "";
+                    kmActual2.setText(aa2);
+
+                    kmActual3.setLayoutX(jugador3.getX());
+                    String aa3 = (int) jugador3.getX() + "";
+                    kmActual3.setText(aa3);
+
+                    kmActual4.setLayoutX(jugador4.getX());
+                    String aa4 = (int) jugador4.getX() + "";
+                    kmActual4.setText(aa4);
+
+
+                });
+                try {
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

@@ -33,8 +33,8 @@
     -fx-text-fill: #FFFFFF;
 }
 
-.highlight:hover {
-    -fx-background-color: rgba(64, 61, 61, 0.15);
-    -fx-background-radius: 15;
-    -fx-text-fill: #696767;
-}
+/*.highlight:hover {*/
+/*    -fx-background-color: rgba(64, 61, 61, 0.15);*/
+/*    -fx-background-radius: 15;*/
+/*    -fx-text-fill: #696767;*/
+/*}*/
