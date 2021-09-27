@@ -91,6 +91,7 @@ public class Juego {
         t.start();
     }
     public static boolean playing = true;
+    // * Para hacer todo lo del hilo
     public void hilo() {
         Thread t = new Thread(() -> {
             while (posicion.size() != 5) {
