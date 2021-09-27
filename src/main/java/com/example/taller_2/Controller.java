@@ -9,8 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 import static com.example.taller_2.Juego.playing;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -58,7 +61,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         meta.setVisible(false);
-        Collections.addAll(imagenes = new ArrayList<>(), jugador, jugador1, jugador2, jugador3,jugador4);
+        Collections.addAll(imagenes = new ArrayList<>(), jugador, jugador1, jugador2, jugador3, jugador4);
         posJug = 0;
         j = null;
         player = new ArrayList<>();
@@ -81,7 +84,7 @@ public class Controller implements Initializable {
         pointsObtained.setCellValueFactory(new PropertyValueFactory("pointsObtained"));
         numberMatches.setCellValueFactory(new PropertyValueFactory("numberMatches"));
         tablaJugadores();
-        seleccionJugador.setText(posJug+"");
+        seleccionJugador.setText(posJug + "");
     }
 
     @FXML
@@ -91,8 +94,10 @@ public class Controller implements Initializable {
     void closev(ActionEvent event) {
         System.exit(0);
     }
+
     @FXML
     private ImageView meta;
+
     // * LO que hace es iniciar a mover los carritos-----------------------------------------------------------------------------------
     @FXML
     void iniciarJuego(ActionEvent event) {
@@ -113,22 +118,42 @@ public class Controller implements Initializable {
     }
 
     // *  para mirar cuando el hilo termine su ejecucion
-    public void verificarHilo(Thread t){
+    @FXML
+    private Label ps1, ps2, ps3, ps4, ps5;
+
+    public void verificarHilo(Thread t) {
         Thread th = new Thread(() -> {
-            int i =0;
-            do{
+            int i = 0;
+            do {
                 i++;
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }while (playing);
-            System.out.println("Termino");
-            for (Jugador a:j.getPosicion()){
-                System.out.println(a.getName());
-            }
-            System.out.println(".....................................");
+            } while (playing);
+            Platform.runLater(() -> {
+//             if(j.getPosicion().size()==0){
+//                 ps1.setText(j.getPosicion().get(0).getName());
+//                 ps1.setTextFill(Color.RED);
+//             }else if(j.getPosicion().size()==1){
+                ps1.setText(j.getPosicion().get(0).getName());
+                ps1.setTextFill(Color.RED);
+
+                ps2.setText(j.getPosicion().get(1).getName());
+                ps2.setTextFill(Color.BLUE);
+
+                ps3.setText(j.getPosicion().get(2).getName());
+                ps3.setTextFill(Color.BLUE);
+
+                ps4.setText(j.getPosicion().get(3).getName());
+                ps4.setTextFill(Color.BLUE);
+
+                ps5.setText(j.getPosicion().get(4).getName());
+                ps5.setTextFill(Color.BLUE);
+//             }
+
+            });
         });
         th.start();
     }
@@ -165,41 +190,6 @@ public class Controller implements Initializable {
 
     }
 
- /*   private Runnable a(){
-        return ()->{
-            for(int i = 0; i<192;i++){
-
-
-                if(jugador.getX()<(Double)960.0){
-                    Platform.runLater(()->jugador.setX((int)(Math.random()*40+1)+(jugador.getX())));
-
-                }
-                if(jugador1.getX()<(Double)960.0){
-                    Platform.runLater(()->jugador1.setX((int)(Math.random()*40+1)+(jugador1.getX())));
-
-                }
-                if(jugador2.getX()<(Double)960.0){
-                    Platform.runLater(()->jugador2.setX((int)(Math.random()*40+1)+(jugador2.getX())));
-
-                }
-                if(jugador3.getX()<(Double)960.0){
-                    Platform.runLater(()->jugador3.setX((int)(Math.random()*40+1)+(jugador3.getX())));
-
-                }
-                if(jugador4.getX()<(Double)960.0){
-                    Platform.runLater(()->jugador4.setX((int)(Math.random()*40+1)+(jugador4.getX())));
-
-                }
-                System.out.println("-> "+i);
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        };
-    }*/
 
     //    * seleccion de jugador ------------------------------------------------------------
     @FXML
@@ -217,14 +207,14 @@ public class Controller implements Initializable {
         Object obj = event.getSource();
         if (obj.equals(adelanteJUgador)) {
 
-            if(posJug<960)posJug+=20;
-            seleccionJugador.setText(posJug+"");
+            if (posJug < 960) posJug += 20;
+            seleccionJugador.setText(posJug + "");
 
         } else {
 
-            if (posJug > 0){
-                posJug-=20;
-                seleccionJugador.setText(posJug+"");
+            if (posJug > 0) {
+                posJug -= 20;
+                seleccionJugador.setText(posJug + "");
             }
 
         }
@@ -232,7 +222,7 @@ public class Controller implements Initializable {
 
     public Runnable moverImg(int j) {
         return () -> {
-            while ( imagenes.get(j).getX()< Integer.parseInt(seleccionJugador.getText())) {
+            while (imagenes.get(j).getX() < Integer.parseInt(seleccionJugador.getText())) {
                 //System.out.println("Entro");
                 Platform.runLater(() -> {
                     imagenes.get(j).setX(this.j.getJugador().get(j).getKm());
@@ -246,23 +236,22 @@ public class Controller implements Initializable {
         };
     }
 
-    public int equivalencia(int i){
+    public int equivalencia(int i) {
         /*
-        * 100 -> 960
-        * 1 -> x
-        * */
-    if(i<100){
-        int a =(i*960)/100;
+         * 100 -> 960
+         * 1 -> x
+         * */
+        if (i < 100) {
+            int a = (i * 960) / 100;
 //        a-=960;
-        int b = 960-a;
+            int b = 960 - a;
 
-        return  a+b;
-    }else{
+            return a + b;
+        } else {
 
-        return  (i*960)/100;
+            return (i * 960) / 100;
+        }
     }
-    }
-
 
 
 }
