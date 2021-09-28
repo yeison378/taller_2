@@ -51,7 +51,6 @@ public class FilePersistence {
     }
 
     void openFile(){
-
         path = Paths.get(pathFile+nameFile);
     }
 

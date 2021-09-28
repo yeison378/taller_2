@@ -62,7 +62,6 @@ public class Controller implements Initializable, Comparator<Jugador> {
     public void asignarPuntajes() {
         Thread th = new Thread(() -> {
             while (j.getPosicion().size() != 5) {
-                System.out.println("->");
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -74,10 +73,8 @@ public class Controller implements Initializable, Comparator<Jugador> {
             j.getPosicion().get(2).setPuntoCarrera(30);
             j.getPosicion().get(3).setPuntoCarrera(20);
             j.getPosicion().get(4).setPuntoCarrera(10);
-            System.out.println("Orden bine: ");
             for (Jugador a : j.getPosicion()) {
                 setPoints(a.getName(), a.getPuntoCarrera());
-                System.out.println(a.getName() + "_>" + a.getPuntoCarrera());
             }
             // ! aquie va el metodo ordenar ...................................................
             ordenarJugaodres();
@@ -91,9 +88,6 @@ public class Controller implements Initializable, Comparator<Jugador> {
     // * Este metodo lo que hace es ordenar todos los jugadores de acuerdo a su puntaje
     public void ordenarJugaodres() {
         player.sort((o1, o2) -> o1.compareTo(o2));
-        for (Jugador a : player) {
-            System.out.println(a.getName() + "->" + a.getPointsObtained());
-        }
         for (int i = 0; i < player.size(); i++) {
             player.get(i).setStartingNumber(i + 1);
         }
@@ -113,7 +107,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
         try {
             serviceJ.loadDate();
         } catch (IOException e) {
-            System.out.println("ERROR");
+            e.printStackTrace();
         }
         try {
             serviceJ.removePlayer();
@@ -126,13 +120,12 @@ public class Controller implements Initializable, Comparator<Jugador> {
     public void agregraPersistencia() {
         ServiceJugador serviceJ = new ServiceJugador("", "jugadores.csv");
         for (int i = 0; i < player.size(); i++) {
-            System.out.println(player.get(i).getName() + "<->" + player.get(i).getPointsObtained());
             serviceJ.addPlayer(player.get(i));
         }
         try {
             serviceJ.loadDate();
         } catch (IOException e) {
-            System.out.println("ERROR");
+            e.printStackTrace();
         }
         try {
             serviceJ.dumpData();
@@ -156,7 +149,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
         try {
             serviceJ.loadDate();
         } catch (IOException e) {
-            System.out.println("ERROR");
+            e.printStackTrace();
         }
         player = serviceJ.getJugador();
         try {
@@ -412,11 +405,6 @@ public class Controller implements Initializable, Comparator<Jugador> {
 
 
                     } else if (j.getPosicion().size() == 5) {
-
-//                        fiesta.setVisible(true);
-//                        fiesta.setX(Integer.parseInt(seleccionJugador.getText()));  fiesta.setVisible(true);
-
-//                        System.out.println("------");
                         ps1.setText(j.getPosicion().get(0).getName() + " PTS. 50+");
                         ps1.setTextFill(Color.YELLOW);
 
@@ -431,7 +419,6 @@ public class Controller implements Initializable, Comparator<Jugador> {
 
                         ps5.setText(j.getPosicion().get(4).getName() + " PTS. 10+");
                         ps5.setTextFill(Color.ALICEBLUE);
-                        //hola
                     }
                 });
 
@@ -572,11 +559,9 @@ public class Controller implements Initializable, Comparator<Jugador> {
         }
     }
 
-
     public Runnable moverImg(int j) {
         return () -> {
             while (imagenes.get(j).getX() < Integer.parseInt(seleccionJugador.getText())) {
-                //System.out.println("Entro");
                 Platform.runLater(() -> {
                     imagenes.get(j).setX(this.j.getJugador().get(j).getKm());
 //                    kmActual.setLayoutX(jugador.getX());
@@ -599,7 +584,6 @@ public class Controller implements Initializable, Comparator<Jugador> {
         return () -> {
             int i = 0;
             while (jugador.getX() < j.getLevel_km() || jugador1.getX() < j.getLevel_km() || jugador2.getX() < j.getLevel_km() || jugador3.getX() < j.getLevel_km() || jugador4.getX() < j.getLevel_km()) {
-                //System.out.println("Entro");
                 Platform.runLater(() -> {
 
                     kmActual.setLayoutX(jugador.getX());

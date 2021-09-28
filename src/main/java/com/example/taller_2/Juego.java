@@ -30,7 +30,7 @@ public class Juego {
         try {
             sJugadores.loadDate();
         } catch (IOException e) {
-            System.out.println("ERROR");
+            e.printStackTrace();
         }
         ArrayList<Jugador> j = sJugadores.getJugador();
         return j;
@@ -45,8 +45,6 @@ public class Juego {
                 return true;
             } else {
                 this.posicion.add(jugador.get(posicion));
-                // pruebaPosicion();
-                System.out.println("-> " + this.posicion.size());
                 return false;
             }
         }
@@ -60,19 +58,13 @@ public class Juego {
     public void pruebaPosicion() {
         int i = 1;
         for (Jugador j : posicion) {
-
-            System.out.println(i + " - " + j.getName());
             i++;
         }
-        System.out.println("_____________________________________________");
     }
-
-
     private static int aux = 0;
 
     public void runn(int posicion, int tiempo) {
         Thread t = new Thread(() -> {
-            //synchronized (this) {
             boolean a = false;
             do {
                 a = correr(posicion);
@@ -83,7 +75,6 @@ public class Juego {
                 }
             } while (a);
             aux++;
-            //}
         });
         t.start();
     }
