@@ -209,7 +209,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
         String amPm = calendar.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM";
 
         if (amPm.equalsIgnoreCase("PM")) {
-            int h = calendar.get(Calendar.HOUR_OF_DAY) - 12;
+            int h = calendar.get(Calendar.HOUR_OF_DAY) ;
             hora = h > 9 ? "" + h : "0" + h;
         } else {
             hora = calendar.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendar.get(Calendar.HOUR_OF_DAY) : "0" + calendar.get(Calendar.HOUR_OF_DAY);
@@ -217,23 +217,16 @@ public class Controller implements Initializable, Comparator<Jugador> {
         minutos = calendar.get(Calendar.MINUTE) > 9 ? "" + calendar.get(Calendar.MINUTE) : "0" + calendar.get(Calendar.MINUTE);
         segundos = calendar.get(Calendar.SECOND) > 9 ? "" + calendar.get(Calendar.SECOND) : "0" + calendar.get(Calendar.SECOND);
 
-        return (formato(Integer.parseInt(hora), hGtr)) + " : " + minutos + " : " + segundos + " " + (formatoAmPm(Integer.parseInt(hora), hGtr,Integer.parseInt(minutos)));
+        return formato(Integer.parseInt(hora),hGtr) + " : " + minutos + " : " + segundos + " " ;
 
     }
 
     public String formato(int actual, int aumento) {
-    /*    if ((actual + aumento) < 12) return actual - aumento + "";
-        else if ((actual + aumento) > 12 && (actual + aumento) < 24) return (actual + aumento) - 12 + "";
-        else return (actual + aumento) - 24 + "";*/
-        if ((actual + aumento) > 12 ) return (actual + aumento) - 12 + "";
+
+        if ((actual + aumento) > 24 ) return (actual + aumento) - 24 + "";
         else return (actual + aumento)+"";
     }
-    public String formatoAmPm(int actual, int aumento,int minutos) {
 
-        if ((actual + aumento ) > 12) return "PM";
-        else if((actual + aumento ) == 12 && minutos>0)return "PM";
-        else return "AM";
-    }
 
     public void postInicial() {
         for (int i = 0; i < player.size(); i++) {
@@ -413,8 +406,8 @@ public class Controller implements Initializable, Comparator<Jugador> {
 
                     } else if (j.getPosicion().size() == 5) {
 
-                        fiesta.setVisible(true);
-                        fiesta.setX(Integer.parseInt(seleccionJugador.getText()));  fiesta.setVisible(true);
+//                        fiesta.setVisible(true);
+//                        fiesta.setX(Integer.parseInt(seleccionJugador.getText()));  fiesta.setVisible(true);
 
 //                        System.out.println("------");
                         ps1.setText(j.getPosicion().get(0).getName() + " PTS. 50+");
