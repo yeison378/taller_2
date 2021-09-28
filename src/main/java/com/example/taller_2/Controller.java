@@ -217,7 +217,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
         minutos = calendar.get(Calendar.MINUTE) > 9 ? "" + calendar.get(Calendar.MINUTE) : "0" + calendar.get(Calendar.MINUTE);
         segundos = calendar.get(Calendar.SECOND) > 9 ? "" + calendar.get(Calendar.SECOND) : "0" + calendar.get(Calendar.SECOND);
 
-        return (formato(Integer.parseInt(hora), hGtr)) + " : " + minutos + " : " + segundos + " " + (formatoAmPm(Integer.parseInt(hora), hGtr));
+        return (formato(Integer.parseInt(hora), hGtr)) + " : " + minutos + " : " + segundos + " " + (formatoAmPm(Integer.parseInt(hora), hGtr,Integer.parseInt(minutos)));
 
     }
 
@@ -228,9 +228,10 @@ public class Controller implements Initializable, Comparator<Jugador> {
         if ((actual + aumento) > 12 ) return (actual + aumento) - 12 + "";
         else return (actual + aumento)+"";
     }
-    public String formatoAmPm(int actual, int aumento) {
+    public String formatoAmPm(int actual, int aumento,int minutos) {
 
-        if ((actual + aumento) > 12 ) return "PM";
+        if ((actual + aumento ) > 12) return "PM";
+        else if((actual + aumento ) == 12 && minutos>0)return "PM";
         else return "AM";
     }
 
