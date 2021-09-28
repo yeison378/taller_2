@@ -70,9 +70,9 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="39.0" layoutY="244.0" prefHeight="300.0" prefWidth="500.0" styleClass="highlight" stylesheets="@estilos.css">
+      <AnchorPane layoutX="39.0" layoutY="209.0" prefHeight="249.0" prefWidth="500.0" styleClass="highlight" stylesheets="@estilos.css">
          <children>
-            <Button fx:id="jugarbtn" alignment="CENTER" contentDisplay="RIGHT" layoutX="188.0" layoutY="243.0" mnemonicParsing="false" onAction="#iniciarJuego" prefHeight="26.0" prefWidth="124.0" styleClass="jugar" stylesheets="@bootones.css" text="JUGAR" textFill="WHITE">
+            <Button fx:id="jugarbtn" alignment="CENTER" contentDisplay="RIGHT" layoutX="188.0" layoutY="197.0" mnemonicParsing="false" onAction="#iniciarJuego" prefHeight="26.0" prefWidth="124.0" styleClass="jugar" stylesheets="@bootones.css" text="JUGAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -83,11 +83,11 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <TextField fx:id="seleccionJugador" alignment="CENTER" editable="false" layoutX="129.0" layoutY="96.0" prefHeight="26.0" prefWidth="235.0" styleClass="highlight" stylesheets="@estilos.css" text="500">
+            <TextField fx:id="seleccionJugador" alignment="CENTER" editable="false" layoutX="129.0" layoutY="58.0" prefHeight="26.0" prefWidth="235.0" styleClass="highlight" stylesheets="@estilos.css" text="500">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></TextField>
-            <Button fx:id="adelanteJUgador" layoutX="371.0" layoutY="97.0" mnemonicParsing="false" onAction="#movJugador" prefHeight="13.0" prefWidth="16.0" styleClass="flecha" stylesheets="@bootones.css">
+            <Button fx:id="adelanteJUgador" layoutX="371.0" layoutY="59.0" mnemonicParsing="false" onAction="#movJugador" prefHeight="13.0" prefWidth="16.0" styleClass="flecha" stylesheets="@bootones.css">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -96,7 +96,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="atrasJugador" layoutX="97.0" layoutY="97.0" mnemonicParsing="false" onAction="#movJugador" prefHeight="13.0" prefWidth="16.0" styleClass="flecha" stylesheets="@bootones.css">
+            <Button fx:id="atrasJugador" layoutX="97.0" layoutY="59.0" mnemonicParsing="false" onAction="#movJugador" prefHeight="13.0" prefWidth="16.0" styleClass="flecha" stylesheets="@bootones.css">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -105,17 +105,17 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ImageView fitHeight="109.0" fitWidth="121.0" layoutX="189.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="109.0" fitWidth="121.0" layoutX="189.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@dados.gif" />
                </image>
             </ImageView>
-            <Label layoutX="149.0" layoutY="43.0" text="RECORRIDO KM" textFill="WHITE">
+            <Label layoutX="149.0" layoutY="14.0" text="RECORRIDO KM" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <Button fx:id="reiniciarbtn" alignment="CENTER" contentDisplay="RIGHT" layoutX="188.0" layoutY="243.0" mnemonicParsing="false" onAction="#reiniciarJuego" prefHeight="26.0" prefWidth="124.0" styleClass="jugar" stylesheets="@bootones.css" textFill="WHITE">
+            <Button fx:id="reiniciarbtn" alignment="CENTER" contentDisplay="RIGHT" layoutX="188.0" layoutY="196.0" mnemonicParsing="false" onAction="#reiniciarJuego" prefHeight="26.0" prefWidth="124.0" styleClass="jugar" stylesheets="@bootones.css" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -219,15 +219,49 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="horaCol" layoutX="88.0" layoutY="570.0" text="Label" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="colBan" fitHeight="50.0" fitWidth="50.0" layoutX="26.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@col.png" />
-         </image>
-      </ImageView>
+      <AnchorPane layoutX="36.0" layoutY="479.0" prefHeight="200.0" prefWidth="500.0" styleClass="highlight" stylesheets="@estilos.css">
+         <children>
+            <Label fx:id="horaCol" layoutX="104.0" layoutY="40.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="colBan" fitHeight="50.0" fitWidth="50.0" layoutX="38.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@col.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="horaArg" layoutX="104.0" layoutY="130.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="colBan1" fitHeight="50.0" fitWidth="50.0" layoutX="38.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@banArg.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="horaFran" layoutX="331.0" layoutY="39.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="colBan11" fitHeight="50.0" fitWidth="50.0" layoutX="263.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@banFrancia.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="horaVen" layoutX="331.0" layoutY="127.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="colBan111" fitHeight="50.0" fitWidth="50.0" layoutX="263.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@banVene.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

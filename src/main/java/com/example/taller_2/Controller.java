@@ -176,13 +176,16 @@ public class Controller implements Initializable, Comparator<Jugador> {
     }
 
     @FXML
-    private Label horaCol;
+    private Label horaCol,horaArg,horaFran,horaVen;
 
     public void horas() {
         Thread hr = new Thread(() -> {
             do {
                 Platform.runLater(() -> {
                     horaCol.setText(horaHilo(0));
+                    horaArg.setText(horaHilo(2));
+                    horaFran.setText(horaHilo(7));
+                    horaVen.setText(horaHilo(1));
                 });
                 try {
                     Thread.sleep(1000);
@@ -211,17 +214,21 @@ public class Controller implements Initializable, Comparator<Jugador> {
         minutos = calendar.get(Calendar.MINUTE) > 9 ? "" + calendar.get(Calendar.MINUTE) : "0" + calendar.get(Calendar.MINUTE);
         segundos = calendar.get(Calendar.SECOND) > 9 ? "" + calendar.get(Calendar.SECOND) : "0" + calendar.get(Calendar.SECOND);
 
-        return (formato(Integer.parseInt(hora), hGtr)) + " : " + minutos + " : " + segundos + " " + amPm;
+        return (formato(Integer.parseInt(hora), hGtr)) + " : " + minutos + " : " + segundos + " " + (formatoAmPm(Integer.parseInt(hora), hGtr));
 
     }
 
     public String formato(int actual, int aumento) {
-        if ((actual + aumento) < 12) return actual - aumento + "";
+    /*    if ((actual + aumento) < 12) return actual - aumento + "";
         else if ((actual + aumento) > 12 && (actual + aumento) < 24) return (actual + aumento) - 12 + "";
-        else return (actual + aumento) - 24 + "";
+        else return (actual + aumento) - 24 + "";*/
+        if ((actual + aumento) > 12 ) return (actual + aumento) - 12 + "";
+        else return (actual + aumento)+"";
+    }
+    public String formatoAmPm(int actual, int aumento) {
 
-//        return "";
-
+        if ((actual + aumento) > 12 ) return "PM";
+        else return "AM";
     }
 
     public void postInicial() {
