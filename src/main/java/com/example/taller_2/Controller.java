@@ -140,9 +140,12 @@ public class Controller implements Initializable, Comparator<Jugador> {
             e.printStackTrace();
         }
     }
+    @FXML
+    private ImageView fiesta;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        fiesta.setVisible(false);
         reiniciarbtn.setVisible(false);
         meta.setVisible(false);
         Collections.addAll(imagenes = new ArrayList<>(), jugador, jugador1, jugador2, jugador3, jugador4);
@@ -300,7 +303,9 @@ public class Controller implements Initializable, Comparator<Jugador> {
         reiniciarbtn.setDisable(true);
         Thread im = new Thread(marcasImg());
         im.start();
+
     }
+
 
     @FXML
     void reiniciarJuego(ActionEvent event) {
@@ -346,16 +351,27 @@ public class Controller implements Initializable, Comparator<Jugador> {
         kmActual3.setLayoutX(25);
         kmActual4.setLayoutX(25);
     }
-
+// * se añden los marcadores a la tabla de posiciones
     public void tablaPuntuacion() {
+
         Thread th = new Thread(() -> {
 
             do {
                 Platform.runLater(() -> {
                     if (j.getPosicion().size() == 1) {
+
                         ps1.setText(j.getPosicion().get(0).getName() + " PTS. 50+");
                         ps1.setTextFill(Color.YELLOW);
+
+                        fiesta.setVisible(true);
+                        fiesta.setX(Integer.parseInt(seleccionJugador.getText()));  fiesta.setVisible(true);
+
+
                     } else if (j.getPosicion().size() == 2) {
+
+                        fiesta.setVisible(true);
+                        fiesta.setX(Integer.parseInt(seleccionJugador.getText()));  fiesta.setVisible(true);
+
                         ps1.setText(j.getPosicion().get(0).getName() + " PTS. 50+");
                         ps1.setTextFill(Color.YELLOW);
 
@@ -363,6 +379,10 @@ public class Controller implements Initializable, Comparator<Jugador> {
                         ps2.setTextFill(Color.SILVER);
 
                     } else if (j.getPosicion().size() == 3) {
+
+                        fiesta.setVisible(true);
+                        fiesta.setX(Integer.parseInt(seleccionJugador.getText()));  fiesta.setVisible(true);
+
                         ps1.setText(j.getPosicion().get(0).getName() + " PTS. 50+");
                         ps1.setTextFill(Color.YELLOW);
 
@@ -373,6 +393,9 @@ public class Controller implements Initializable, Comparator<Jugador> {
                         ps3.setTextFill(Color.GOLDENROD);
 
                     } else if (j.getPosicion().size() == 4) {
+                        fiesta.setVisible(true);
+                        fiesta.setX(Integer.parseInt(seleccionJugador.getText()));  fiesta.setVisible(true);
+
                         ps1.setText(j.getPosicion().get(0).getName() + " PTS. 50+");
                         ps1.setTextFill(Color.YELLOW);
 
@@ -387,6 +410,9 @@ public class Controller implements Initializable, Comparator<Jugador> {
 
 
                     } else if (j.getPosicion().size() == 5) {
+
+                        fiesta.setVisible(true);
+                        fiesta.setX(Integer.parseInt(seleccionJugador.getText()));  fiesta.setVisible(true);
 
 //                        System.out.println("------");
                         ps1.setText(j.getPosicion().get(0).getName() + " PTS. 50+");
