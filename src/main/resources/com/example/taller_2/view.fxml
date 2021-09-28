@@ -221,46 +221,62 @@
       </Label>
       <AnchorPane layoutX="36.0" layoutY="479.0" prefHeight="200.0" prefWidth="500.0" styleClass="highlight" stylesheets="@estilos.css">
          <children>
-            <Label fx:id="horaCol" layoutX="104.0" layoutY="40.0" text="Label" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="colBan" fitHeight="50.0" fitWidth="50.0" layoutX="38.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@col.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="horaArg" layoutX="104.0" layoutY="130.0" text="Label" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="colBan1" fitHeight="50.0" fitWidth="50.0" layoutX="38.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@banArg.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="horaFran" layoutX="331.0" layoutY="39.0" text="Label" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="colBan11" fitHeight="50.0" fitWidth="50.0" layoutX="263.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@banFrancia.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="horaVen" layoutX="331.0" layoutY="127.0" text="Label" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="colBan111" fitHeight="50.0" fitWidth="50.0" layoutX="263.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@banVene.png" />
-               </image>
-            </ImageView>
+            <AnchorPane layoutX="17.0" layoutY="22.0" prefHeight="73.0" prefWidth="218.0" styleClass="band" stylesheets="@estilos.css">
+               <children>
+                  <Label fx:id="horaCol" layoutX="82.0" layoutY="27.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="colBan" fitHeight="50.0" fitWidth="50.0" layoutX="16.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@col.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="17.0" layoutY="107.0" prefHeight="73.0" prefWidth="218.0" styleClass="band" stylesheets="@estilos.css">
+               <children>
+                  <Label fx:id="horaArg" layoutX="80.0" layoutY="18.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="colBan1" fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@banArg.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="258.0" layoutY="22.0" prefHeight="73.0" prefWidth="218.0" styleClass="band" stylesheets="@estilos.css">
+               <children>
+                  <Label fx:id="horaFran" layoutX="85.0" layoutY="28.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="colBan11" fitHeight="50.0" fitWidth="50.0" layoutX="17.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@banFrancia.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="258.0" layoutY="107.0" prefHeight="73.0" prefWidth="218.0" styleClass="band" stylesheets="@estilos.css">
+               <children>
+                  <Label fx:id="horaVen" layoutX="86.0" layoutY="13.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="colBan111" fitHeight="50.0" fitWidth="50.0" layoutX="18.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@banVene.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <ImageView fx:id="fiesta" fitHeight="173.0" fitWidth="179.0" layoutX="9.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">

@@ -310,6 +310,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
 
     @FXML
     void reiniciarJuego(ActionEvent event) {
+        fiesta.setVisible(false);
         seleccionJugador.setText("50");
         posJug = 50;
         ps1.setText("-----------");
