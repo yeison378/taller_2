@@ -182,7 +182,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
         Thread hr = new Thread(() -> {
             do {
                 Platform.runLater(() -> {
-                    horaCol.setText(horaHilo());
+                    horaCol.setText(horaHilo(0));
                 });
                 try {
                     Thread.sleep(1000);
@@ -195,7 +195,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
         hr.start();
     }
 
-    public String horaHilo() {
+    public String horaHilo(int hGtr) {
         String hora = "", minutos = "", segundos = "";
         Calendar calendar = new GregorianCalendar();
         Date fechaHora = new Date();
@@ -211,7 +211,16 @@ public class Controller implements Initializable, Comparator<Jugador> {
         minutos = calendar.get(Calendar.MINUTE) > 9 ? "" + calendar.get(Calendar.MINUTE) : "0" + calendar.get(Calendar.MINUTE);
         segundos = calendar.get(Calendar.SECOND) > 9 ? "" + calendar.get(Calendar.SECOND) : "0" + calendar.get(Calendar.SECOND);
 
-        return hora + " : " + minutos + " : " + segundos + " " + amPm;
+        return (formato(Integer.parseInt(hora), hGtr)) + " : " + minutos + " : " + segundos + " " + amPm;
+
+    }
+
+    public String formato(int actual, int aumento) {
+        if ((actual + aumento) < 12) return actual - aumento + "";
+        else if ((actual + aumento) > 12 && (actual + aumento) < 24) return (actual + aumento) - 12 + "";
+        else return (actual + aumento) - 24 + "";
+
+//        return "";
 
     }
 
@@ -589,7 +598,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
             Platform.runLater(() -> {
 
                 kmActual.setLayoutX(jugador.getX());
-                String aa = (int)jugador.getX() + "";
+                String aa = (int) jugador.getX() + "";
                 kmActual.setText(aa);
 
                 kmActual1.setLayoutX(jugador1.getX());
