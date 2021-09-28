@@ -284,7 +284,7 @@ public class Controller implements Initializable, Comparator<Jugador> {
 //            verificarHilo(t);
             tablaPuntuacion();
         }
-        int rand =(int) (Math.random() * 200 + 100);
+        int rand =(int) (Math.random() * 100 + 50);
 //        j.runn(0, (int) (Math.random() * 50 + 10));
 //        j.runn(1, (int) (Math.random() * 50 + 10));
 //        j.runn(2, (int) (Math.random() * 50 + 10));

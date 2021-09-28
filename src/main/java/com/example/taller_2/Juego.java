@@ -39,7 +39,7 @@ public class Juego {
     // * En este metodo el carrito corre
     public boolean correr(int posicion) {
         synchronized (this) {
-            int dado = (int) (Math.random() * 20 + 1);
+            int dado = (int) (Math.random() * 12 + 1);
             if (jugador.get(posicion).getKm() < level_km) {
                 jugador.get(posicion).setKm(dado + jugador.get(posicion).getKm());
                 return true;
