@@ -284,11 +284,18 @@ public class Controller implements Initializable, Comparator<Jugador> {
 //            verificarHilo(t);
             tablaPuntuacion();
         }
-        j.runn(0, (int) (Math.random() * 50 + 10));
-        j.runn(1, (int) (Math.random() * 50 + 10));
-        j.runn(2, (int) (Math.random() * 50 + 10));
-        j.runn(3, (int) (Math.random() * 50 + 10));
-        j.runn(4, (int) (Math.random() * 50 + 10));
+        int rand =(int) (Math.random() * 200 + 100);
+//        j.runn(0, (int) (Math.random() * 50 + 10));
+//        j.runn(1, (int) (Math.random() * 50 + 10));
+//        j.runn(2, (int) (Math.random() * 50 + 10));
+//        j.runn(3, (int) (Math.random() * 50 + 10));
+//        j.runn(4, (int) (Math.random() * 50 + 10));
+
+        j.runn(0, rand);
+        j.runn(1, rand);
+        j.runn(2, rand);
+        j.runn(3, rand);
+        j.runn(4, rand);
         j.hilo();
         asignarPuntajes();
         jugarbtn.setDisable(true);
